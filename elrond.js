@@ -13,7 +13,7 @@ async function getCardIndex() {
   logger.info("Retrieving player cards");
   try {
     return fetch(
-      "http://ringsdb.com/api/public/cards/?_format=json"
+      "http://hallofbeorn.com/Export/Cards"
     ).then((res) => res.json());
   } catch (err) {
     logger.error(err);
