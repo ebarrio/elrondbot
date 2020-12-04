@@ -1,6 +1,6 @@
 module.exports = function help(channel) {
   channel.send(
-      "**Elrond** - Lord of the Rings: The Card Game sage bot - List of commands\n" +
+    "**BeornBot** - Lord of the Rings: The Card Game sage bot - List of commands\n" +
       "!help - This help message\n" +
       "!rings <query> - Find and display card text from RingsDB\n" +
       "!ringsimg <query> - Find and display card image from RingsDB\n" +
@@ -13,4 +13,4 @@ module.exports = function help(channel) {
       "!myrings - Display your links from RingsDB\n" +
       "**It is perilous to study too deeply the arts of the Enemy, for good or for ill. But such falls and betrayals, alas, have happened before.**"
   );
-}
+};
