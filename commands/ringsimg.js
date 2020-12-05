@@ -26,7 +26,7 @@ module.exports = function ringsimg({ name, filters }, cardList, channel, logger)
   if (imgMatches.length > 0) {
     const firstCard = imgMatches[0];
     channel.send({
-      files: [`http://ringsdb.com/${firstCard.imagesrc}`]
+      files: [`${firstCard.imagesrc}`]
     })
   }
 };

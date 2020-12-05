@@ -1,9 +1,9 @@
 module.exports = function help(channel) {
   channel.send(
-    "**BeornBot** - Lord of the Rings: The Card Game sage bot - List of commands\n" +
+    "**BeornBot** - Lord of the Rings: The Card Game bear bot - List of commands\n" +
       "!help - This help message\n" +
-      "!rings <query> - Find and display card text from RingsDB\n" +
-      "!ringsimg <query> - Find and display card image from RingsDB\n" +
+      "!rings <query> - Find and display card text from Hall of Beorn\n" +
+      "!ringsimg <query> - Find and display card image from Hall of Beorn\n" +
       "!quest - Select a random quest\n" +
       "!hero - Select a random hero\n" +
       "!card - Select a random card (skipping heroes)\n" +
