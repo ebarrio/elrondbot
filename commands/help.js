@@ -3,9 +3,9 @@ module.exports = function help(channel) {
     "**BeornBot** - Lord of the Rings: The Card Game bear bot - List of commands\n" +
       "!help - This help message\n" +
       "!hob <query> - Find and display offical card text from Hall of Beorn\n" +
-      "!hob+ <query> - Find and display card text from Hall of Beorn (including community cards)\n" +
+      "!hobc <query> - Find and display card text from Hall of Beorn (including community)\n" +
       "!hobimg <query> - Find and display offical card image from Hall of Beorn\n" +
-      "!hobimg+ <query> - Find and display card image from Hall of Beorn (including community cards)\n" +
+      "!hobimgc <query> - Find and display card image from Hall of Beorn (including community)\n" +
       "!quest - Select a random quest\n" +
       "!hero - Select a random hero\n" +
       "!card - Select a random card (skipping heroes)\n" +

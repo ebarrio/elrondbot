@@ -219,12 +219,12 @@ Promise.all([getCardIndex(), getAllCardIndex(), getQCData()])
           case "rings":
           case "hob":
             return commands.rings(query);
-          case "hob+":
+          case "hobc":
             return commands.hobplus(query);
           case "ringsimg":
           case "hobimg":
             return commands.ringsimg(query);
-          case "hobimgplus":
+          case "hobimgc":
             return commands.hobimgplus(query);
           case "quest":
             return commands.quest();
