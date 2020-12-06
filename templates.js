@@ -81,6 +81,35 @@ function hero({
 
 }
 
+function ally({
+  sphere_code,
+  name,
+  sphere_name,
+  type_name,
+  cost,
+  willpower,
+  attack,
+  defense,
+  health,
+  traits,
+  text,
+  flavor,
+  pack_name,
+  position,
+}, emoji) {
+    let message = `${emoji[sphere_code] || ''} **${name}**\n*${sphere_name} ${type_name}* - Cost: **${cost}**\n${emoji["willpower"]} ${willpower} ${emoji['attack']} ${attack} ${emoji['defense']} ${defense} ${emoji['hitpoints']} ${health}\n`;
+    if (traits) {
+        message += `**${traits}**\n\n`;
+    }
+    message += `${parseText(text, emoji)}\n`;
+    if (flavor) {
+        message += `*${flavor.replace(/<cite>/g, " - ").replace(/<\/cite>/, "")}*\n`;
+    }
+    message += `\n*${pack_name}* - **#${position}**\n\n`;
+
+    return message;
+}
+
 function player_side_quest({
   sphere_code,
   name,
@@ -193,7 +222,7 @@ function encounter_side_quest({
   pack_name,
   position,
 }, emoji) {
-    let message = `Encounter Set: ${encounter_set}\n$${emoji['hitpoints']} ${quest_points}\n`;
+    let message = `Encounter Set: ${encounter_set}\n${emoji['hitpoints']} ${quest_points}\n`;
     if (traits) {
         message += `**${traits}**\n\n`;
     }
@@ -204,35 +233,6 @@ function encounter_side_quest({
     message += `\n*${pack_name}* - **#${position}**\n\n`;
 
     return message;
-}
-
-function ally({
-  sphere_code,
-  name,
-  sphere_name,
-  type_name,
-  cost,
-  willpower,
-  attack,
-  defense,
-  health,
-  traits,
-  text,
-  flavor,
-  pack_name,
-  position,
-}, emoji) {
-  let message = `${emoji[sphere_code] || ''} **${name}**\n*${sphere_name} ${type_name}* - Cost: **${cost}**\n${emoji["willpower"]} ${willpower} ${emoji['attack']} ${attack} ${emoji['defense']} ${defense} ${emoji['hitpoints']} ${health}\n`;
-  if (traits) {
-    message += `**${traits}**\n\n`;
-  }
-  message += `${parseText(text, emoji)}\n`;
-  if (flavor) {
-    message += `*${flavor.replace(/<cite>/g, " - ").replace(/<\/cite>/, "")}*\n`;
-  }
-  message += `\n*${pack_name}* - **#${position}**\n\n`;
-
-  return message;
 }
 
 module.exports = {
