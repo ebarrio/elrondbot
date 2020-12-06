@@ -108,6 +108,31 @@ function enemy({
     return message;
 }
 
+function location({
+  name,
+  type_name,
+  encounter_set,
+  threat_strength,
+  quest_points,
+  traits,
+  text,
+  flavor,
+  pack_name,
+  position,
+}, emoji) {
+    let message = `Encounter Set: ${encounter_set}\n${emoji["threat"]} ${threat_strength} ${emoji['hitpoints']} ${quest_points}\n`;
+    if (traits) {
+        message += `**${traits}**\n\n`;
+    }
+    message += `${parseText(text, emoji)}\n`;
+    if (flavor) {
+        message += `*${flavor.replace(/<cite>/g, " - ").replace(/<\/cite>/, "")}*\n`;
+    }
+    message += `\n*${pack_name}* - **#${position}**\n\n`;
+
+    return message;
+}
+
 function treachery({
   name,
   type_name,
@@ -166,5 +191,6 @@ module.exports = {
   hero,
   ally,
   enemy,
+  location,
   treachery
 };
