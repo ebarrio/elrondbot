@@ -147,11 +147,11 @@ function parseQCData(qcData) {
 }
 
 // Initialize Discord Bot
-Promise.all([getCardIndex(), getQCData()])
-  .then(([cardList, qcData]) => {
-    return [cardList, parseQCData(qcData)];
+Promise.all([getCardIndex(), getAllCardIndex(), getQCData()])
+  .then(([cardList, allCardList, qcData]) => {
+    return [cardList, allCardList, parseQCData(qcData)];
   })
-  .then(([cardList, { scenarios, ...rulesRef }]) => {
+  .then(([cardList, allCardList, { scenarios, ...rulesRef }]) => {
     const bot = new Discord.Client();
     const emojiNames = [
       "lore",
@@ -204,6 +204,7 @@ Promise.all([getCardIndex(), getQCData()])
         const commandConfig = {
           author,
           cardList,
+          allCardList,
           scenarios,
           rulesRef,
           emojiSymbols,
@@ -218,9 +219,13 @@ Promise.all([getCardIndex(), getQCData()])
           case "rings":
           case "hob":
             return commands.rings(query);
+          case "hob+":
+            return commands.hobplus(query);
           case "ringsimg":
           case "hobimg":
             return commands.ringsimg(query);
+          case "hobimgplus":
+            return commands.hobimgplus(query);
           case "quest":
             return commands.quest();
           case "hero":
