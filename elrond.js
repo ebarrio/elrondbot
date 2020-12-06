@@ -21,18 +21,6 @@ async function getCardIndex() {
   }
 }
 
-async function getAllCardIndex() {
-    logger.info("Retrieving all cards");
-    try {
-        return fetch(
-            "http://hallofbeorn.com/Export/Cards?setType=ALL_SETS"
-            ).then((res) => res.json());
-    } catch (err) {
-        logger.error(err);
-        return Promise.reject(err);
-    }
-}
-
 /**
  * QC format =
  * {
@@ -147,11 +135,11 @@ function parseQCData(qcData) {
 }
 
 // Initialize Discord Bot
-Promise.all([getCardIndex(), getAllCardIndex(), getQCData()])
-  .then(([cardList, allCardList, qcData]) => {
-    return [cardList, allCardList, parseQCData(qcData)];
+Promise.all([getCardIndex(), getQCData()])
+  .then(([cardList, qcData]) => {
+    return [cardList, parseQCData(qcData)];
   })
-  .then(([cardList, allCardList, { scenarios, ...rulesRef }]) => {
+  .then(([cardList, { scenarios, ...rulesRef }]) => {
     const bot = new Discord.Client();
     const emojiNames = [
       "lore",
@@ -216,12 +204,12 @@ Promise.all([getCardIndex(), getAllCardIndex(), getQCData()])
           case "help":
             return commands.help();
           case "hobc":
-            return commands.hobplus(query, allCardList);
+            return commands.hobplus(query);
           case "rings":
           case "hob":
             return commands.rings(query);
           case "hobimgc":
-            return commands.hobimgplus(query, allCardList);
+            return commands.hobimgplus(query);
           case "ringsimg":
           case "hobimg":
             return commands.ringsimg(query);

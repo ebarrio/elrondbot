@@ -2,7 +2,7 @@ const helpers = require("./command-helpers");
 
 module.exports = function hobplus(
   { name, filters },
-  allCardList,
+  cardList,
   emojiSymbols,
   channel,
   author,
@@ -13,7 +13,7 @@ module.exports = function hobplus(
     return;
   }
   logger.info(`Searching for ${name}`);
-  let matches = allCardList
+  let matches = cardList
     .filter(c => c.name
       .toLowerCase()
       .normalize('NFD')

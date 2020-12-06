@@ -1,13 +1,13 @@
 const fetch = require("node-fetch");
 const helpers = require("./command-helpers");
 
-module.exports = function hobimgplus({ name, filters }, allCardList, channel, logger) {
+module.exports = function hobimgplus({ name, filters }, cardList, channel, logger) {
   if (name === '') {
     channel.send('I am sorry, but I need at least a name to find a card');
     return;
   }
   logger.info(`Searching for ${name}`);
-  const imgMatches = allCardList
+  const imgMatches = cardList
     .filter(c => c.name
       .toLowerCase()
       .normalize('NFD')
