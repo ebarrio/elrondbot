@@ -10,7 +10,7 @@ const logger = Winston.createLogger({
 });
 
 async function getCardIndex() {
-  logger.info("Retrieving player cards");
+  logger.info("Retrieving official cards");
   try {
     return fetch(
       "http://hallofbeorn.com/Export/Cards"
@@ -19,6 +19,18 @@ async function getCardIndex() {
     logger.error(err);
     return Promise.reject(err);
   }
+}
+
+async function getAllCardIndex() {
+    logger.info("Retrieving all cards");
+    try {
+        return fetch(
+            "http://hallofbeorn.com/Export/Cards?setType=ALL_SETS"
+            ).then((res) => res.json());
+    } catch (err) {
+        logger.error(err);
+        return Promise.reject(err);
+    }
 }
 
 /**
@@ -204,8 +216,10 @@ Promise.all([getCardIndex(), getQCData()])
           case "help":
             return commands.help();
           case "rings":
+          case "hob":
             return commands.rings(query);
           case "ringsimg":
+          case "hobimg":
             return commands.ringsimg(query);
           case "quest":
             return commands.quest();
