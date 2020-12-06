@@ -204,7 +204,6 @@ Promise.all([getCardIndex(), getAllCardIndex(), getQCData()])
         const commandConfig = {
           author,
           cardList,
-          allCardList,
           scenarios,
           rulesRef,
           emojiSymbols,
@@ -216,16 +215,16 @@ Promise.all([getCardIndex(), getAllCardIndex(), getQCData()])
         switch (cmd) {
           case "help":
             return commands.help();
+          case "hobc":
+            return commands.hobplus(query, allCardList);
           case "rings":
           case "hob":
             return commands.rings(query);
-          case "hobc":
-            return commands.hobplus(query);
+          case "hobimgc":
+            return commands.hobimgplus(query, allCardList);
           case "ringsimg":
           case "hobimg":
             return commands.ringsimg(query);
-          case "hobimgc":
-            return commands.hobimgplus(query);
           case "quest":
             return commands.quest();
           case "hero":
