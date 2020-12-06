@@ -75,6 +75,35 @@ function hero({
 
 }
 
+function enemy({
+  engagement_cost,
+  encounter_set,
+  name,
+  type_name,
+  threat_strength,
+  attack,
+  defense,
+  health,
+  traits,
+  text,
+  flavor,
+  pack_name,
+  position,
+}, emoji) {
+    let message = `Encounter Set: ${encounter_set} Engagement Cost: **${engagement_cost}**\n${emoji["threat"]} ${threat_strength} ${emoji['attack']} ${attack} ${emoji['defense']} ${defense} ${emoji['hitpoints']} ${health}\n`;
+    if (traits) {
+        message += `**${traits}**\n\n`;
+    }
+    message += `${parseText(text, emoji)}\n`;
+    if (flavor) {
+        message += `*${flavor.replace(/<cite>/g, " - ").replace(/<\/cite>/, "")}*\n`;
+    }
+    message += `\n*${pack_name}* - **#${position}**\n\n`;
+
+    return message;
+
+}
+
 function ally({
   sphere_code,
   name,
