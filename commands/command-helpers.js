@@ -39,7 +39,7 @@ function createCardMessage(emoji, card) {
       return templates.hero(card, emoji);
     case "ally":
         return templates.ally(card, emoji);
-    case "player_side_quest":
+    case "player-side-quest":
       return templates.player_side_quest(card, emoji);
     case "enemy":
       return templates.enemy(card, emoji);
@@ -47,7 +47,7 @@ function createCardMessage(emoji, card) {
       return templates.location(card, emoji);
     case "treachery":
       return templates.treachery(card, emoji);
-    case "encounter_side_quest":
+    case "encounter-side-quest":
       return templates.encounter_side_quest(card, emoji);
     default:
       return templates.card(card, emoji);
