@@ -106,7 +106,6 @@ function enemy({
     message += `\n*${pack_name}* - **#${position}**\n\n`;
 
     return message;
-
 }
 
 function ally({
@@ -142,5 +141,6 @@ module.exports = {
   card,
   cardShort,
   hero,
-  ally
+  ally,
+  enemy
 };
