@@ -182,6 +182,30 @@ function treachery({
     return message;
 }
 
+function encounter_side_quest({
+  name,
+  type_name,
+  encounter_set,
+  quest_points,
+  traits,
+  text,
+  flavor,
+  pack_name,
+  position,
+}, emoji) {
+    let message = `Encounter Set: ${encounter_set}\n$${emoji['hitpoints']} ${quest_points}\n`;
+    if (traits) {
+        message += `**${traits}**\n\n`;
+    }
+    message += `${parseText(text, emoji)}\n`;
+    if (flavor) {
+        message += `*${flavor.replace(/<cite>/g, " - ").replace(/<\/cite>/, "")}*\n`;
+    }
+    message += `\n*${pack_name}* - **#${position}**\n\n`;
+
+    return message;
+}
+
 function ally({
   sphere_code,
   name,
@@ -219,5 +243,6 @@ module.exports = {
   player_side_quest,
   enemy,
   location,
-  treachery
+  treachery,
+  encounter_side_quest
 };
