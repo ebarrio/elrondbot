@@ -19,9 +19,10 @@ function cardShort({
   type_name,
 }, emoji) {
     if (encounter_set) {
-        return `**${name}**\n*{encounter_set} ${type_name}*`;
+        return ` **${name}**\n*{encounter_set} ${type_name}*`;
+    } else {
+        return `${emoji[sphere_code] || ''} **${name}**\n*${sphere_name} ${type_name}*`;
     }
-  return `${emoji[sphere_code] || ''} **${name}**\n*${sphere_name} ${type_name}*`;
 }
 
 function card({
