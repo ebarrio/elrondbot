@@ -108,6 +108,29 @@ function enemy({
     return message;
 }
 
+function treachery({
+  name,
+  type_name,
+  encounter_set,
+  traits,
+  text,
+  flavor,
+  pack_name,
+  position,
+}, emoji) {
+    let message = `Encounter Set: ${encounter_set}\n`;
+    if (traits) {
+        message += `**${traits}**\n\n`;
+    }
+    message += `${parseText(text, emoji)}\n`;
+    if (flavor) {
+        message += `*${flavor.replace(/<cite>/g, " - ").replace(/<\/cite>/, "")}*\n`;
+    }
+    message += `\n*${pack_name}* - **#${position}**\n\n`;
+
+    return message;
+}
+
 function ally({
   sphere_code,
   name,
@@ -142,5 +165,6 @@ module.exports = {
   cardShort,
   hero,
   ally,
-  enemy
+  enemy,
+  treachery
 };
