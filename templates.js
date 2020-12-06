@@ -81,10 +81,10 @@ function hero({
 }
 
 function enemy({
-  engagement_cost,
-  encounter_set,
   name,
   type_name,
+  engagement_cost,
+  encounter_set,
   threat_strength,
   attack,
   defense,
