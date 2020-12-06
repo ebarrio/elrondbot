@@ -13,15 +13,16 @@ function parseText(text, emoji) {
 
 function cardShort({
   sphere_code,
+  pack_name,
   encounter_set,
   name,
   sphere_name,
   type_name,
 }, emoji) {
     if (encounter_set) {
-        return `**${name}**\n*${type_name} (${encounter_set})*`;
+        return `**${name}**\n*${type_name} (${pack_name})*`;
     } else {
-        return `${emoji[sphere_code] || ''} **${name}**\n*${sphere_name} ${type_name}*`;
+        return `${emoji[sphere_code] || ''} **${name}**\n*${sphere_name} ${type_name} (${pack_name})*`;
     }
 }
 
@@ -78,6 +79,31 @@ function hero({
 
   return message;
 
+}
+
+function player_side_quest({
+  sphere_code,
+  name,
+  sphere_name,
+  type_name,
+  quest_points,
+  traits,
+  text,
+  flavor,
+  pack_name,
+  position,
+}, emoji) {
+    let message = `${emoji[sphere_code] || ''} **${name}**\n*${sphere_name} ${type_name}* - ${emoji['hitpoints']} ${quest_points}\n`;
+    if (traits) {
+        message += `**${traits}**\n\n`;
+    }
+    message += `${parseText(text, emoji)}\n`;
+    if (flavor) {
+        message += `*${flavor.replace(/<cite>/g, " - ").replace(/<\/cite>/, "")}*\n`;
+    }
+    message += `\n*${pack_name}* - **#${position}**\n\n`;
+
+    return message;
 }
 
 function enemy({
@@ -190,6 +216,7 @@ module.exports = {
   cardShort,
   hero,
   ally,
+  player_side_quest,
   enemy,
   location,
   treachery

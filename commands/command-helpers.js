@@ -38,7 +38,9 @@ function createCardMessage(emoji, card) {
     case "hero":
       return templates.hero(card, emoji);
     case "ally":
-      return templates.ally(card, emoji);
+        return templates.ally(card, emoji);
+    case "player_side_quest":
+        return templates.player_side_quest(card, emoji);
     case "enemy":
       return templates.enemy(card, emoji);
     case "location":
