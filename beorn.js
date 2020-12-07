@@ -10,7 +10,7 @@ const logger = Winston.createLogger({
 });
 
 async function getCardIndex() {
-  logger.info("Retrieving official cards");
+  logger.info("Retrieving all cards");
   try {
     return fetch(
       "http://hallofbeorn.com/Export/Cards?setType=ALL_SETS"
