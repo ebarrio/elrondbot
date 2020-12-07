@@ -150,7 +150,7 @@ function enemy({
   pack_name,
   position,
 }, emoji) {
-    let message = `Encounter Set: ${encounter_set} Engagement Cost: **${engagement_cost}**\n${emoji["threat"]} ${threat_strength} ${emoji['attack']} ${attack} ${emoji['defense']} ${defense} ${emoji['hitpoints']} ${health}\n`;
+    let message = `**${name}** - Encounter Set: ${encounter_set} Engagement Cost: **${engagement_cost}**\n${emoji["threat"]} ${threat_strength} ${emoji['attack']} ${attack} ${emoji['defense']} ${defense} ${emoji['hitpoints']} ${health}\n`;
     if (traits) {
         message += `**${traits}**\n\n`;
     }
@@ -175,7 +175,7 @@ function location({
   pack_name,
   position,
 }, emoji) {
-    let message = `Encounter Set: ${encounter_set}\n${emoji["threat"]} ${threat_strength} ${emoji['hitpoints']} ${quest_points}\n`;
+    let message = `**${name}** - Encounter Set: ${encounter_set}\n${emoji["threat"]} ${threat_strength} ${emoji['hitpoints']} ${quest_points}\n`;
     if (traits) {
         message += `**${traits}**\n\n`;
     }
@@ -198,7 +198,7 @@ function treachery({
   pack_name,
   position,
 }, emoji) {
-    let message = `Encounter Set: ${encounter_set}\n`;
+    let message = `**${name}** - Encounter Set: ${encounter_set}\n`;
     if (traits) {
         message += `**${traits}**\n\n`;
     }
@@ -222,7 +222,7 @@ function encounter_side_quest({
   pack_name,
   position,
 }, emoji) {
-    let message = `Encounter Set: ${encounter_set}\n${emoji['hitpoints']} ${quest_points}\n`;
+    let message = `**${name}** - Encounter Set: ${encounter_set}\n${emoji['hitpoints']} ${quest_points}\n`;
     if (traits) {
         message += `**${traits}**\n\n`;
     }

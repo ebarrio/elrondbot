@@ -1,6 +1,6 @@
 {
   "name": "BeornBot",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Discord bot for looking up cards and card images for The Lord of the Rings: Living Card Game",
   "main": "beorn.js",
   "scripts": {

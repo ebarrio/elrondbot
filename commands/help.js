@@ -1,6 +1,6 @@
 module.exports = function help(channel) {
   channel.send(
-    "**BeornBot** - Lord of the Rings: The Card Game Bear Bot 3.0.1 - List of commands\n" +
+    "**BeornBot** - Lord of the Rings: The Card Game Bear Bot 3.0.2 - List of commands\n" +
       "!help - This help message\n" +
       "!hob <query> - Find and display card text from Hall of Beorn\n" +
       "!hob+ <query> - Find and display card text from Hall of Beorn (including unofficial)\n" +
@@ -13,7 +13,7 @@ module.exports = function help(channel) {
       "!glossary <text> - Finds questions in Glossary containing <text>\n" +
       "!errata <cardname> - Finds errata for card with name <cardname>\n" +
       "!myrings - Display your links from RingsDB\n" +
-      "**Patreon support welcome: https://www.patreon.com/Beorn **\n" +
-      "**It was a good story, that of yours, but I like it still better now I am sure it is true.**"
+      "**It was a good story, that of yours, but I like it still better now I am sure it is true.**" +
+      "**Patreon support welcome: https://www.patreon.com/Beorn **\n"
   );
 };
