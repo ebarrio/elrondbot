@@ -1,12 +1,17 @@
 const fetch = require("node-fetch");
 const helpers = require("./command-helpers");
 
-module.exports = function ringsimg({ name, filters }, cardList, channel, logger) {
-  if (name === '') {
-    channel.send('I am sorry, but I need at least a name to find a card');
-    return;
-  }
-  logger.info(`Searching for ${name}`);
+module.exports = function ringsimg({ name, filters }, cardList, channel, logger, filterUnofficial) {
+    if (name === '') {
+        channel.send('I am sorry, but I need at least a name to find a card');
+        return;
+    }
+    logger.info(`Searching for ${name} (filterUnofficial=${filterUnofficial})`);
+
+  var setTypeFilter = (filterUnofficial)
+    ? function(x) { return x.is_official; }
+    : function(x) { return true; };
+
   const imgMatches = cardList
     .filter(c => c.name
       .toLowerCase()
@@ -14,6 +19,7 @@ module.exports = function ringsimg({ name, filters }, cardList, channel, logger)
       .replace(/[\u0300-\u036f]/g, "")
       .indexOf(name) > -1
     )
+    .filter(c => setTypeFilter(c))
     .filter(c => helpers.checkFilters(c, filters));
     let searchParams = `q=${name}`;
     const searchFilters = filters.map(f => `${f.filterKey}%3A${f.value}`).join('+');

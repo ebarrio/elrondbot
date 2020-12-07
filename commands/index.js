@@ -14,13 +14,14 @@ module.exports = function({
   rulesRef,
   emojiSymbols,
   channel,
-  logger
+  logger,
+  filterUnofficial,
 }) {
   return {
     help: () => help(channel),
     rings: query =>
-      rings(query, cardList, emojiSymbols, channel, author, logger),
-    ringsimg: query => ringsimg(query, cardList, channel, logger),
+      rings(query, cardList, emojiSymbols, channel, author, logger, filterUnofficial),
+    ringsimg: query => ringsimg(query, cardList, channel, logger, filterUnofficial),
     quest: () => quest(scenarios, author, channel, logger),
     hero: query => hero(query, cardList, emojiSymbols, channel, logger),
     card: query => card(query, cardList, emojiSymbols, channel, logger),

@@ -188,6 +188,8 @@ Promise.all([getCardIndex(), getQCData()])
 
         args = args.splice(1);
 
+        filterUnofficial = !cmd.endsWith('+');
+
         const query = getNameAndFilters(args);
         const commandConfig = {
           author,
@@ -198,6 +200,7 @@ Promise.all([getCardIndex(), getQCData()])
           bot,
           channel,
           logger,
+          filterUnofficial,
         };
         const commands = getCommandList(commandConfig);
         switch (cmd) {
@@ -205,9 +208,11 @@ Promise.all([getCardIndex(), getQCData()])
             return commands.help();
           case "rings":
           case "hob":
+          case "hob+":
             return commands.rings(query);
           case "ringsimg":
           case "hobimg":
+          case "hobimg+":
             return commands.ringsimg(query);
           case "quest":
             return commands.quest();

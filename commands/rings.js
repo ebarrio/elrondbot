@@ -6,13 +6,19 @@ module.exports = function rings(
   emojiSymbols,
   channel,
   author,
-  logger
+  logger,
+  filterUnofficial,
 ) {
   if (name === '') {
     channel.send('I am sorry, but I need at least a name to find a card');
     return;
   }
-  logger.info(`Searching for ${name}`);
+  logger.info(`Searching for ${name} (filterUnofficial=${filterUnofficial})`);
+
+  var setTypeFilter = (filterUnofficial)
+    ? function(x) { return x.is_official; }
+    : function(x) { return true; };
+
   let matches = cardList
     .filter(c => c.name
       .toLowerCase()
@@ -20,6 +26,7 @@ module.exports = function rings(
       .replace(/[\u0300-\u036f]/g, "")
       .indexOf(name) > -1
     )
+    .filter(c => setTypeFilter(c))
     .filter(c => helpers.checkFilters(c, filters));
 
   logger.info(`found ${matches.length} cards, sending response`);
