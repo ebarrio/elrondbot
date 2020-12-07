@@ -1,23 +1,23 @@
 {
-  "name": "elrond",
-  "version": "2.3.7",
-  "description": "Discord bot for looking up cards and card images",
-  "main": "elrond.js",
+  "name": "BeornBot",
+  "version": "3.0.0",
+  "description": "Discord bot for looking up cards and card images for The Lord of the Rings: Living Card Game",
+  "main": "beorn.js",
   "scripts": {
-    "dev": "nodemon elrond.js",
-    "start": "node elrond.js"
+    "dev": "nodemon beorn.js",
+    "start": "node beorn.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ronderksen/elrond.git"
+    "url": "git+https://github.com/hone/beornbot.git"
   },
   "keywords": [],
   "author": "Dan Poage",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ronderksen/elrond/issues"
+    "url": "https://github.com/hone/beornbot/issues"
   },
-  "homepage": "https://github.com/ronderksen/elrond#readme",
+  "homepage": "https://github.com/hone/beornbot#readme",
   "dependencies": {
     "discord.js": "^12.4.1",
     "node-fetch": "^2.6.1",

@@ -14,11 +14,17 @@ function checkFilters(card, filters) {
     w: "willpower",
     h: "health",
     s: "sphere_code",
-    t: "type_code"
+    t: "type_code",
+    i: "is_official",
   };
   if (filters.length === 0) {
-    return true;
+    return card.is_official;
   }
+
+  if (!filters[i]) {
+      filters[i] = { filterKey: 'i', value: true };
+  }
+
   return filters.every(f => {
     if (!filterFields[f.filterKey]) {
       // invalid filter type
@@ -27,6 +33,9 @@ function checkFilters(card, filters) {
     if (!card[filterFields[f.filterKey]]) {
       // card does not have field, so no match
       return false;
+    }
+    if (f.filterKey == 'i') {
+        return card.is_official == f.value;
     }
 
     return card[filterFields[f.filterKey]].toString() === f.value;

@@ -13,7 +13,7 @@ async function getCardIndex() {
   logger.info("Retrieving official cards");
   try {
     return fetch(
-      "http://hallofbeorn.com/Export/Cards"
+      "http://hallofbeorn.com/Export/Cards?setType=ALL_SETS"
     ).then((res) => res.json());
   } catch (err) {
     logger.error(err);
@@ -203,13 +203,9 @@ Promise.all([getCardIndex(), getQCData()])
         switch (cmd) {
           case "help":
             return commands.help();
-          case "hobc":
-            return commands.hobplus(query);
           case "rings":
           case "hob":
             return commands.rings(query);
-          case "hobimgc":
-            return commands.hobimgplus(query);
           case "ringsimg":
           case "hobimg":
             return commands.ringsimg(query);
