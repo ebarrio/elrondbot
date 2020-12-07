@@ -13,6 +13,7 @@ module.exports = function help(channel) {
       "!glossary <text> - Finds questions in Glossary containing <text>\n" +
       "!errata <cardname> - Finds errata for card with name <cardname>\n" +
       "!myrings - Display your links from RingsDB\n" +
-      "**I do not need your service, thank you, but I expect you need mine.**"
+      "**Patreon support welcome: https://www.patreon.com/Beorn **\n" +
+      "**It was a good story, that of yours, but I like it still better now I am sure it is true.**"
   );
 };
