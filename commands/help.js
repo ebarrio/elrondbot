@@ -13,7 +13,7 @@ module.exports = function help(channel) {
       "!glossary <text> - Finds questions in Glossary containing <text>\n" +
       "!errata <cardname> - Finds errata for card with name <cardname>\n" +
       "!myrings - Display your links from RingsDB\n" +
-      "**It was a good story, that of yours, but I like it still better now I am sure it is true.**" +
+      "**It was a good story, that of yours, but I like it still better now I am sure it is true.**\n" +
       "**Patreon support welcome: https://www.patreon.com/Beorn **\n"
   );
 };
