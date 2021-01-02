@@ -1,6 +1,6 @@
 {
   "name": "BeornBot",
-  "version": "3.0.7",
+  "version": "3.0.8",
   "description": "Discord bot for The Lord of the Rings: The Card Game",
   "main": "beorn.js",
   "scripts": {
