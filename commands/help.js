@@ -15,7 +15,7 @@ module.exports = function help(channel) {
       "!errata <cardname> - Finds errata for card with name <cardname>\n" +
       "!myrings - Display your links from RingsDB\n\n" +
       "**It was a good story, that of yours, but I like it still better now I am sure it is true.**\n" +
-      "**Special thanks to Hone for his help with hosting BeornBot!**" +
+      "**Special thanks to Hone for his help with hosting BeornBot!**\n" +
       "**Patreon support welcome: https://www.patreon.com/Beorn **\n"
   );
 };
