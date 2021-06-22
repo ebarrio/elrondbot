@@ -8,7 +8,7 @@ module.exports = function ringsimg(
     channel, 
     author, 
     logger, 
-    filterUnofficial
+    filterUnofficial,
 ) {
     if (name === '') {
         channel.send('I am sorry, but I need at least a name to find a card');
