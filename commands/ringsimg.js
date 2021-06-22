@@ -33,7 +33,10 @@ module.exports = function ringsimg({ name, filters }, cardList, emojiSymbols, ch
     const firstCard = imgMatches[0];
     if (firstCard.imagesrc2) {
       channel.send({
-        files: [`${firstCard.imagesrc}`, `${firstCard.imagesrc2}`]
+        files: [`${firstCard.imagesrc}`]
+      });
+      channel.send({
+        files: [`${firstCard.imagesrc2`]
       });
     } else {
       channel.send({
