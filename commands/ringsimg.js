@@ -29,10 +29,41 @@ module.exports = function ringsimg({ name, filters }, cardList, channel, logger,
 
   logger.info(`found ${imgMatches.length} cards, sending response`);
   channel.send(`Cards found: ${imgMatches.length}\n\n`);
-  if (imgMatches.length > 0) {
+  if (imgMatches.length === 1) {
     const firstCard = imgMatches[0];
-    channel.send({
-      files: [`${firstCard.imagesrc}`]
+    if (firstCard.imagesrc2) {
+      channel.send({
+        files: [`${firstCard.imagesrc}`, `${firstCard.imagesrc2}`]
+      });
+    } else {
+      channel.send({
+        files: [`${firstCard.imagesrc}`]
+      });
+    }
+  } else if (imgMatches.length > 1) {
+    channel.send(`I found ${imgMatches.length} cards, reply with the number of the one you want:`);
+    channel.send(imgMatches.map((card, index) => {
+      const message = helpers.createShortCardMessage(emojiSymbols, card);
+      return `${index + 1}. ${message}`;
+    }).join('\n'));
+    channel.awaitMessages(helpers.fromUser(author), { max: 1, time: 60000, errors: ['time']})
+    .then(collected => {
+      const response = parseInt(collected.first().content, 10) - 1;
+      if (response >= 0 && response < imgMatches.length) {
+        const selectedCard = imgMatches[response];
+        if (selectedCard.imagesrc2) {
+          channel.send({
+            files: [`${selectedCard.imagesrc}`, `${selectedCard.imagesrc2}`]
+          });
+        } else {
+          channel.send({
+            files : [`${imgMatches[response]}`]
+          });
+        }
+      } else {
+        channel.send("Invalid response received");
+      }
     })
+    .catch(collected => console.log('No reply received within 60 seconds'));
   }
 };
