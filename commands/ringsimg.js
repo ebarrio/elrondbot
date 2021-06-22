@@ -1,20 +1,12 @@
 const fetch = require("node-fetch");
 const helpers = require("./command-helpers");
 
-module.exports = function ringsimg(
-  { name, filters },
-  cardList,
-  emojiSymbols,
-  channel,
-  author,
-  logger,
-  filterUnofficial,
-) {
-    if (name === '') {
-        channel.send('I am sorry, but I need at least a name to find a card');
-        return;
-    }
-    logger.info(`Searching for ${name} (filterUnofficial=${filterUnofficial})`);
+module.exports = function ringsimg({ name, filters }, cardList, emojiSymbols, channel, author, logger, filterUnofficial) {
+  if (name === '') {
+    channel.send('I am sorry, but I need at least a name to find a card');
+    return;
+  }
+  logger.info(`Searching for ${name} (filterUnofficial=${filterUnofficial})`);
 
   var setTypeFilter = (filterUnofficial)
     ? function(x) { return x.is_official; }
