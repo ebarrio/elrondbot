@@ -1,6 +1,6 @@
 module.exports = function help(channel) {
   channel.send(
-    "**BeornBot** - Lord of the Rings: The Card Game - Bear Bot 3.0.19 (2021-09-06)\n\n" +
+    "**BeornBot** - Lord of the Rings: The Card Game - Bear Bot 3.0.20 (2021-09-09)\n\n" +
       "List of Commands:\n" +
       "!help - This help message\n" +
       "!hob <query> - Find and display card text from Hall of Beorn\n" +
