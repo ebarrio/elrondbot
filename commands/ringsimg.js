@@ -35,7 +35,6 @@ module.exports = function ringsimg({ name, filters }, cardList, emojiSymbols, ch
         files: [`${firstCard.imagesrc}`]
     });
     if (firstCard.imagesrc2) {
-      channel.send(`Side B\n\n`);
       channel.send({   
         files: [`${firstCard.imagesrc2}`]
       });
@@ -51,13 +50,13 @@ module.exports = function ringsimg({ name, filters }, cardList, emojiSymbols, ch
       const response = parseInt(collected.first().content, 10) - 1;
       if (response >= 0 && response < imgMatches.length) {
         const selectedCard = imgMatches[response];
+        channel.send({
+            files : [`${selectedCard.imagesrc}`]
+        });
+        
         if (selectedCard.imagesrc2) {
           channel.send({
             files: [`${selectedCard.imagesrc2}`]
-          });
-        } else {
-          channel.send({
-            files : [`${selectedCard.imagesrc}`]
           });
         }
       } else {
