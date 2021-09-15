@@ -31,13 +31,13 @@ module.exports = function ringsimg({ name, filters }, cardList, emojiSymbols, ch
   channel.send(`Cards found: ${imgMatches.length}\n\n`);
   if (imgMatches.length === 1) {
     const firstCard = imgMatches[0];
+    channel.send({
+        files: [`${firstCard.imagesrc}`]
+    });
     if (firstCard.imagesrc2) {
+      channel.send(`Side B\n\n`);
       channel.send({   
         files: [`${firstCard.imagesrc2}`]
-      });
-    } else {
-      channel.send({
-        files: [`${firstCard.imagesrc}`]
       });
     }
   } else if (imgMatches.length > 1) {
