@@ -9,16 +9,9 @@ const logger = Winston.createLogger({
   transports: [new Winston.transports.Console()],
 });
 
-async function getCardIndex() {
-  logger.info("Retrieving all cards");
-  try {
-    return fetch(
-      "http://hallofbeorn.com/Export/Cards?setType=ALL_SETS"
-    ).then((res) => res.json());
-  } catch (err) {
-    logger.error(err);
-    return Promise.reject(err);
-  }
+function getCardIndex() {
+  var json = require('./data/Cards.json');
+  return json;
 }
 
 /**
