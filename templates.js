@@ -37,6 +37,7 @@ function card({
   flavor,
   pack_name,
   position,
+  versions,
 }, emoji) {
   let message = `${emoji[sphere_code] || ''} **${name}**\n*${sphere_name} ${type_name}* - Cost: **${cost}**\n`;
   if (traits) {
@@ -46,7 +47,16 @@ function card({
   if (flavor) {
     message += `*${flavor.replace(/<cite>/g, " - ").replace(/<\/cite>/, "")}*\n`;
   }
-  message += `\n*${pack_name}* - **#${position}**\n\n`;
+  message += `\n*${pack_name}* - **#${position}**\n`;
+
+  if (versions && versions.length > 1) {
+    message += `*versions:*\n`;
+    for (var i=0;i<versions.length;i++) {
+      let ver = versions[i];
+      message += `  ${ver.set_name} (${ver.year})\n`;   
+    }
+    message += `\n\n`;
+  }
 
   return message;
 }
