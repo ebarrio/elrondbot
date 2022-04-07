@@ -14,7 +14,7 @@ function parseText(text, emoji) {
 function getVersionText(versions) {
   let message = '';
   if (versions && versions.length > 1) {
-    message += `*versions:*\n`;
+    message += `*Versions:*\n`;
     for (var i=0;i<versions.length;i++) {
       let ver = versions[i];
       message += `  ${ver.set_name} (${ver.year})\n`;   
