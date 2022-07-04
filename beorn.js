@@ -210,8 +210,10 @@ Promise.all([getCardIndex(), getQCData()])
           case "quest":
             return commands.quest();
           case "hero":
+          case "hero+":
             return commands.hero(query);
           case "card":
+          case "card+":
             return commands.card(query);
           case "faq":
             return commands.rr({

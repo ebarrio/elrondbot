@@ -23,8 +23,8 @@ module.exports = function({
       rings(query, cardList, emojiSymbols, channel, author, logger, filterUnofficial),
     ringsimg: query => ringsimg(query, cardList, emojiSymbols, channel, author, logger, filterUnofficial),
     quest: () => quest(scenarios, author, channel, logger),
-    hero: query => hero(query, cardList, emojiSymbols, channel, logger),
-    card: query => card(query, cardList, emojiSymbols, channel, logger),
+    hero: query => hero(query, cardList, emojiSymbols, channel, logger, filterUnofficial),
+    card: query => card(query, cardList, emojiSymbols, channel, logger, filterUnofficial),
     rr: query => rr(query, rulesRef, emojiSymbols, channel, author, logger),
     myrings: () => myrings(author, channel, logger)
   };
