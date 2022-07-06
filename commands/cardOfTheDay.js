@@ -14,14 +14,15 @@ module.exports = function cardOfTheDay(cardList, emoji, logger, bot) {
 
   const channelId = '994005297150570557';
 
-  const channel = bot.channels.get(channelId);
-
-  if (channel) {
-    channel.send('**Card of the Day**');
-    channel.send(helpers.createCardMessage(emoji, card));
-  } else {
-    let e = 'Could not find #card-of-the-day channel';
-    logger.error(e);
-    console.log(e);
-  }
+  bot.channels.fetch(channelId)
+    .then(channel => {
+      if (channel) {
+        channel.send('**Card of the Day**');
+        channel.send(helpers.createCardMessage(emoji, card));
+      } else {
+        let e = 'Could not find #card-of-the-day channel';
+        logger.error(e);
+        console.log(e);
+      }
+    });
 }
