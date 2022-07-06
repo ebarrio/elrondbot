@@ -2,6 +2,7 @@ const fetch = require("node-fetch");
 const Discord = require("discord.js");
 const Winston = require("winston");
 const getCommandList = require("./commands");
+const cardOfTheDay = require("./commands/cardOfTheDay.js");
 
 const logger = Winston.createLogger({
   level: "debug",
@@ -154,6 +155,15 @@ Promise.all([getCardIndex(), getQCData()])
     ];
     let emojiSymbols;
 
+    const DAY_MILLIS = 86400000;
+
+    function millisUntilCutoff() {
+      let now = new Date();
+      let millis = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 13, 0, 0, 0) - now;
+      if (millis < 0) millis += DAY_MILLIS;
+      return millis;
+    }
+
     bot.once("ready", (evt) => {
       logger.info("Connected");
       logger.info("Logged in as: ");
@@ -170,6 +180,13 @@ Promise.all([getCardIndex(), getQCData()])
         }
         return acc;
       }, {});
+
+      setTimeout(function() {
+          cardOfTheDay(cardList, emojiSymbols, logger, bot);
+          setInterval(function() {
+            cardOfTheDay(cardList, emojiSymbols, logger, bot);
+          }, DAY_MILLIS);
+      }, millisUntilCutoff());
     });
 
     bot.on("message", ({ author, content, channel }) => {
