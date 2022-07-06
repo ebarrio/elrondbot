@@ -17,7 +17,10 @@ module.exports = function cardOfTheDay(cardList, emoji, logger, bot) {
   bot.channels.fetch(channelId)
     .then(channel => {
       if (channel) {
-        channel.send('**Card of the Day**');
+        channel.send(`**Card of the Day**\n`);
+        channel.send({
+          files : [`${card.imagesrc}`]
+        });
         channel.send(helpers.createCardMessage(emoji, card));
       } else {
         let e = 'Could not find #card-of-the-day channel';
