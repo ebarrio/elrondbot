@@ -105,14 +105,12 @@ function hero({
   if (flavor) {
     message += `*${flavor.replace(/<cite>/g, " - ").replace(/<\/cite>/, "")}*\n`;
   }
-  message += `\n*${pack_name}* - **#${position}**\n\n`;
+  message += `\n*${pack_name}* - **#${position}**\nHoB: ${url}\n`;
 
   let versionText = getVersionText(versions);
   if (versionText) {
     message += versionText;
   }
-
-  message += `\nHoB: {url}`;
 
   return message;
 }
@@ -143,14 +141,12 @@ function ally({
     if (flavor) {
         message += `*${flavor.replace(/<cite>/g, " - ").replace(/<\/cite>/, "")}*\n`;
     }
-    message += `\n*${pack_name}* - **#${position}**\n\n`;
+    message += `\n*${pack_name}* - **#${position}**\nHoB: ${url}\n`;
 
     let versionText = getVersionText(versions);
     if (versionText) {
         message += versionText;
     }
-
-    message += `\nHoB: {url}`;
 
     return message;
 }
@@ -177,14 +173,12 @@ function player_side_quest({
     if (flavor) {
         message += `*${flavor.replace(/<cite>/g, " - ").replace(/<\/cite>/, "")}*\n`;
     }
-    message += `\n*${pack_name}* - **#${position}**\n\n`;
+    message += `\n*${pack_name}* - **#${position}**\nHoB: ${url}\n`;
 
     let versionText = getVersionText(versions);
     if (versionText) {
         message += versionText;
     }
-
-    message += `\nHoB: {url}`;
 
     return message;
 }
@@ -213,9 +207,7 @@ function enemy({
     if (flavor) {
         message += `*${flavor.replace(/<cite>/g, " - ").replace(/<\/cite>/, "")}*\n`;
     }
-    message += `\n*${pack_name}* - **#${position}**\n\n`;
-
-    message += `\nHoB: {url}`;
+    message += `\n*${pack_name}* - **#${position}**\nHoB: ${url}\n`;
 
     return message;
 }
@@ -241,9 +233,7 @@ function location({
     if (flavor) {
         message += `*${flavor.replace(/<cite>/g, " - ").replace(/<\/cite>/, "")}*\n`;
     }
-    message += `\n*${pack_name}* - **#${position}**\n\n`;
-
-    message += `\nHoB: {url}`;
+    message += `\n*${pack_name}* - **#${position}**\nHoB: ${url}\n`;
 
     return message;
 }
@@ -267,9 +257,7 @@ function treachery({
     if (flavor) {
         message += `*${flavor.replace(/<cite>/g, " - ").replace(/<\/cite>/, "")}*\n`;
     }
-    message += `\n*${pack_name}* - **#${position}**\n\n`;
-
-    message += `\nHoB: {url}`;
+    message += `\n*${pack_name}* - **#${position}**\nHoB: ${url}\n`;
 
     return message;
 }
@@ -294,9 +282,7 @@ function encounter_side_quest({
     if (flavor) {
         message += `*${flavor.replace(/<cite>/g, " - ").replace(/<\/cite>/, "")}*\n`;
     }
-    message += `\n*${pack_name}* - **#${position}**\n\n`;
-
-    message += `\nHoB: {url}`;
+    message += `\n*${pack_name}* - **#${position}**\nHoB: ${url}\n`;
 
     return message;
 }
