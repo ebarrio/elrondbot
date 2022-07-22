@@ -32,6 +32,7 @@ function cardShort({
   sphere_name,
   type_name,
   versions,
+  url,
 }, emoji) {
     let versionText = '';
     if (versions && versions.length > 1) {
@@ -71,11 +72,10 @@ function card({
   let versionText = getVersionText(versions);
   if (versionText) {
     message += versionText;
+  } else {
+    message += `${url}\n`;
   }
-
-  let link = getCardLink(card);
-  message += `\nHoB: {link}`;
-
+  
   return message;
 }
 
@@ -110,6 +110,8 @@ function hero({
   let versionText = getVersionText(versions);
   if (versionText) {
     message += versionText;
+  } else {
+    message += `${url}\n`;
   }
 
   return message;
@@ -145,7 +147,9 @@ function ally({
 
     let versionText = getVersionText(versions);
     if (versionText) {
-        message += versionText;
+      message += versionText;
+    } else {
+      message += `${url}\n`;
     }
 
     return message;
@@ -177,7 +181,9 @@ function player_side_quest({
 
     let versionText = getVersionText(versions);
     if (versionText) {
-        message += versionText;
+      message += versionText;
+    } else {
+      message += `${url}\n`;
     }
 
     return message;
