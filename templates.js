@@ -17,7 +17,7 @@ function getVersionText(versions) {
     message += `*Versions:*\n`;
     for (var i=0;i<versions.length;i++) {
       let ver = versions[i];
-      message += `  ${ver.set_name} (${ver.year})\n`;   
+      message += `  ${ver.set_name} (${ver.year}) ${ver.url}\n`;   
     }
     message += `\n\n`;
   }
@@ -66,7 +66,7 @@ function card({
   if (flavor) {
     message += `*${flavor.replace(/<cite>/g, " - ").replace(/<\/cite>/, "")}*\n`;
   }
-  message += `\n*${pack_name}* - **#${position}**\n`;
+  message += `\n*${pack_name}* - **#${position}**\n\n`;
 
   let versionText = getVersionText(versions);
   if (versionText) {
@@ -105,7 +105,7 @@ function hero({
   if (flavor) {
     message += `*${flavor.replace(/<cite>/g, " - ").replace(/<\/cite>/, "")}*\n`;
   }
-  message += `\n*${pack_name}* - **#${position}**\n${url}\n`;
+  message += `\n*${pack_name}* - **#${position}**\n\n`;
 
   let versionText = getVersionText(versions);
   if (versionText) {
@@ -141,7 +141,7 @@ function ally({
     if (flavor) {
         message += `*${flavor.replace(/<cite>/g, " - ").replace(/<\/cite>/, "")}*\n`;
     }
-    message += `\n*${pack_name}* - **#${position}**\n${url}\n`;
+    message += `\n*${pack_name}* - **#${position}**\n\n`;
 
     let versionText = getVersionText(versions);
     if (versionText) {
@@ -173,7 +173,7 @@ function player_side_quest({
     if (flavor) {
         message += `*${flavor.replace(/<cite>/g, " - ").replace(/<\/cite>/, "")}*\n`;
     }
-    message += `\n*${pack_name}* - **#${position}**\n${url}\n`;
+    message += `\n*${pack_name}* - **#${position}**\n\n`;
 
     let versionText = getVersionText(versions);
     if (versionText) {
