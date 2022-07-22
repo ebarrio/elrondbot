@@ -56,6 +56,7 @@ function card({
   pack_name,
   position,
   versions,
+  url,
 }, emoji) {
   let message = `${emoji[sphere_code] || ''} **${name}**\n*${sphere_name} ${type_name}* - Cost: **${cost}**\n`;
   if (traits) {
@@ -71,6 +72,9 @@ function card({
   if (versionText) {
     message += versionText;
   }
+
+  let link = getCardLink(card);
+  message += `\nHoB: {link}`;
 
   return message;
 }
@@ -91,6 +95,7 @@ function hero({
   pack_name,
   position,
   versions,
+  url,
 }, emoji) {
   let message = `${emoji[sphere_code] || ''} **${name}**\n*${sphere_name} ${type_name}* - Starting Threat: **${threat}**\n${emoji["willpower"]} ${willpower} ${emoji['attack']} ${attack} ${emoji['defense']} ${defense} ${emoji['hitpoints']} ${health}\n`;
   if (traits) {
@@ -106,6 +111,8 @@ function hero({
   if (versionText) {
     message += versionText;
   }
+
+  message += `\nHoB: {url}`;
 
   return message;
 }
@@ -126,6 +133,7 @@ function ally({
   pack_name,
   position,
   versions,
+  url,
 }, emoji) {
     let message = `${emoji[sphere_code] || ''} **${name}**\n*${sphere_name} ${type_name}* - Cost: **${cost}**\n${emoji["willpower"]} ${willpower} ${emoji['attack']} ${attack} ${emoji['defense']} ${defense} ${emoji['hitpoints']} ${health}\n`;
     if (traits) {
@@ -142,6 +150,8 @@ function ally({
         message += versionText;
     }
 
+    message += `\nHoB: {url}`;
+
     return message;
 }
 
@@ -157,6 +167,7 @@ function player_side_quest({
   pack_name,
   position,
   versions,
+  url,
 }, emoji) {
     let message = `${emoji[sphere_code] || ''} **${name}**\n*${sphere_name} ${type_name}* - ${emoji['hitpoints']} ${quest_points}\n`;
     if (traits) {
@@ -172,6 +183,8 @@ function player_side_quest({
     if (versionText) {
         message += versionText;
     }
+
+    message += `\nHoB: {url}`;
 
     return message;
 }
@@ -190,6 +203,7 @@ function enemy({
   flavor,
   pack_name,
   position,
+  url,
 }, emoji) {
     let message = `**${name}** - Encounter Set: ${encounter_set} Engagement Cost: **${engagement_cost}**\n${emoji["threat"]} ${threat_strength} ${emoji['attack']} ${attack} ${emoji['defense']} ${defense} ${emoji['hitpoints']} ${health}\n`;
     if (traits) {
@@ -200,6 +214,8 @@ function enemy({
         message += `*${flavor.replace(/<cite>/g, " - ").replace(/<\/cite>/, "")}*\n`;
     }
     message += `\n*${pack_name}* - **#${position}**\n\n`;
+
+    message += `\nHoB: {url}`;
 
     return message;
 }
@@ -215,6 +231,7 @@ function location({
   flavor,
   pack_name,
   position,
+  url,
 }, emoji) {
     let message = `**${name}** - Encounter Set: ${encounter_set}\n${emoji["threat"]} ${threat_strength} ${emoji['hitpoints']} ${quest_points}\n`;
     if (traits) {
@@ -225,6 +242,8 @@ function location({
         message += `*${flavor.replace(/<cite>/g, " - ").replace(/<\/cite>/, "")}*\n`;
     }
     message += `\n*${pack_name}* - **#${position}**\n\n`;
+
+    message += `\nHoB: {url}`;
 
     return message;
 }
@@ -238,6 +257,7 @@ function treachery({
   flavor,
   pack_name,
   position,
+  url,
 }, emoji) {
     let message = `**${name}** - Encounter Set: ${encounter_set}\n`;
     if (traits) {
@@ -248,6 +268,8 @@ function treachery({
         message += `*${flavor.replace(/<cite>/g, " - ").replace(/<\/cite>/, "")}*\n`;
     }
     message += `\n*${pack_name}* - **#${position}**\n\n`;
+
+    message += `\nHoB: {url}`;
 
     return message;
 }
@@ -262,6 +284,7 @@ function encounter_side_quest({
   flavor,
   pack_name,
   position,
+  url,
 }, emoji) {
     let message = `**${name}** - Encounter Set: ${encounter_set}\n${emoji['hitpoints']} ${quest_points}\n`;
     if (traits) {
@@ -272,6 +295,8 @@ function encounter_side_quest({
         message += `*${flavor.replace(/<cite>/g, " - ").replace(/<\/cite>/, "")}*\n`;
     }
     message += `\n*${pack_name}* - **#${position}**\n\n`;
+
+    message += `\nHoB: {url}`;
 
     return message;
 }
