@@ -5,7 +5,7 @@ function parseText(text, emoji) {
     .replace(/<\/.*>/g, "");
 
   Object.keys(emoji).forEach(emoName => {
-    parsedText = parsedText.replace(`[${emoName}]`, emoji[emoName]);
+    parsedText = parsedText.replaceAll(`[${emoName}]`, emoji[emoName]);
   });
 
   return parsedText;
