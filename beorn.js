@@ -142,6 +142,7 @@ Promise.all([getCardIndex(), getQCData()])
       "tactics",
       "neutral",
       "fellowship",
+      "baggins",
       "attack",
       "defense",
       "willpower",
