@@ -135,13 +135,22 @@ function parseQCData(qcData) {
   };
 }
 
+function parseQuestData(questData) {
+    return {
+        scenarios: questData,
+        faq: {},
+        glossary: {},
+        erratas: {},
+    };
+}
+
 // Initialize Discord Bot
 Promise.all([getCardIndex(), getQuestIndex()])
-  //.then(([cardList, questList]) => {
+  .then(([cardList, questList]) => {
     //return [cardList, questList];
-    //return [cardList, parseQCData(qcData)];
-  //})
-  .then(([cardList, questList, ...rulesRef }]) => {
+    return [cardList, parseQuestData(questList)];
+  })
+  .then(([cardList, scenarios, ...rulesRef }]) => {
     const bot = new Discord.Client();
     const emojiNames = [
       "lore",
@@ -213,7 +222,7 @@ Promise.all([getCardIndex(), getQuestIndex()])
         const commandConfig = {
           author,
           cardList,
-          questList,
+          scenarios,
           rulesRef,
           emojiSymbols,
           bot,

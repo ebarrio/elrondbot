@@ -1,11 +1,11 @@
 const helpers = require("./command-helpers");
 
-module.exports = function quest(questList, author, channel, logger, filterUnofficial) {
+module.exports = function quest(scenarios, author, channel, logger, filterUnofficial) {
   var questTypeFilter = (filterUnofficial)
     ? function(x) { return x.is_official; }
     : function(x) { return true; };
 
-  const quests = questList.filter(q => questTypeFilter(q));
+  const quests = scenarios.filter(s => questTypeFilter(s));
       
   const quest = helpers.getRandomItem(quests);
 
