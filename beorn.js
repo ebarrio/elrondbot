@@ -213,7 +213,7 @@ Promise.all([getCardIndex(), getQuestIndex()])
         const commandConfig = {
           author,
           cardList,
-          scenarios,
+          questList,
           rulesRef,
           emojiSymbols,
           bot,
