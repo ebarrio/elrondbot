@@ -193,7 +193,7 @@ Promise.all([getCardIndex(), getQCData()])
     bot.on("message", ({ author, content, channel }) => {
       // Our bot needs to know if it will execute a command
       // It will listen for messages that will start with `!`
-      if (content.startsWith("!")) {
+      if (content.startsWith("/")) {
         let args = content.substring(1).split(" ");
         const cmd = args[0];
 
