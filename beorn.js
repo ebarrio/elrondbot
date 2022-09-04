@@ -228,7 +228,9 @@ Promise.all([getCardIndex(), getQCData()])
           case "hobimg+":
             return commands.ringsimg(query);
           case "quest":
-            return commands.quest();
+              //return commands.quest();
+              channel.send("this feature is disabled while the LotR Quest Companion is offline");
+              return null;
           case "hero":
           case "hero+":
             return commands.hero(query);
@@ -236,20 +238,26 @@ Promise.all([getCardIndex(), getQCData()])
           case "card+":
             return commands.card(query);
           case "faq":
-            return commands.rr({
-              ...query,
-              type: "faq",
-            });
+              //return commands.rr({
+              //  ...query,
+              //  type: "faq",
+              //});
+              channel.send("this feature is disabled while the LotR Quest Companion is offline");
+              return null;
           case "glossary":
-            return commands.rr({
-              ...query,
-              type: "glossary",
-            });
+              //return commands.rr({
+              //  ...query,
+              //  type: "glossary",
+              //});
+              channel.send("this feature is disabled while the LotR Quest Companion is offline");
+              return null;
           case "errata":
-            return commands.rr({
-              ...query,
-              type: "errata",
-            });
+              //return commands.rr({
+              //  ...query,
+              //  type: "errata",
+              //});
+              channel.send("this feature is disabled while the LotR Quest Companion is offline");
+              return null;
           case "myrings":
             return commands.myrings();
           default:
