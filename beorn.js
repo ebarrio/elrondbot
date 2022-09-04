@@ -150,7 +150,7 @@ Promise.all([getCardIndex(), getQuestIndex()])
     //return [cardList, questList];
     return [cardList, parseQuestData(questList)];
   })
-  .then(([cardList, scenarios, ...rulesRef }]) => {
+  .then(([cardList, { scenarios, ...rulesRef }]) => {
     const bot = new Discord.Client();
     const emojiNames = [
       "lore",
