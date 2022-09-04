@@ -39,7 +39,7 @@ async function getQCData() {
     ).then((res) => res.json());
   } catch (err) {
     logger.error(err);
-    return Promise.reject(err);
+    return [];
   }
 }
 
@@ -131,7 +131,8 @@ function parseQCData(qcData) {
 // Initialize Discord Bot
 Promise.all([getCardIndex(), getQCData()])
   .then(([cardList, qcData]) => {
-    return [cardList, parseQCData(qcData)];
+      return [cardList, {} ]; //NOTE: This is temporary while Quest Companion is unavailable
+    //return [cardList, parseQCData(qcData)];
   })
   .then(([cardList, { scenarios, ...rulesRef }]) => {
     const bot = new Discord.Client();
