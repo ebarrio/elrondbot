@@ -15,6 +15,11 @@ function getCardIndex() {
   return json;
 }
 
+function getQuestIndex() {
+    var json = require('./data/Quests.json');
+    return json;
+}
+
 /**
  * QC format =
  * {
@@ -31,6 +36,7 @@ function getCardIndex() {
  *
  * This function extracts the name, QC url and hall of beorn url.
  */
+/*
 async function getQCData() {
     logger.info("Retrieving data from QC");
     return []; //NOTE: This is temporary while QC is down
@@ -42,7 +48,7 @@ async function getQCData() {
     logger.error(err);
     return [];
   }
-}
+}*/
 
 function getNameAndFilters(args) {
   return args.reduce(
@@ -130,12 +136,12 @@ function parseQCData(qcData) {
 }
 
 // Initialize Discord Bot
-Promise.all([getCardIndex(), getQCData()])
-  .then(([cardList, qcData]) => {
-      return [cardList, {} ]; //NOTE: This is temporary while Quest Companion is unavailable
+Promise.all([getCardIndex(), getQuestIndex()])
+  //.then(([cardList, questList]) => {
+    //return [cardList, questList];
     //return [cardList, parseQCData(qcData)];
-  })
-  .then(([cardList, { scenarios, ...rulesRef }]) => {
+  //})
+  .then(([cardList, questList]) => { //{ scenarios, ...rulesRef }]) => {
     const bot = new Discord.Client();
     const emojiNames = [
       "lore",
@@ -228,9 +234,10 @@ Promise.all([getCardIndex(), getQCData()])
           case "hobimg+":
             return commands.ringsimg(query);
           case "quest":
-              //return commands.quest();
-              channel.send("this feature is disabled while the LotR Quest Companion is offline");
-              return null;
+          case "quest+":
+              return commands.quest();
+              //channel.send("this feature is disabled while the LotR Quest Companion is offline");
+              //return null;
           case "hero":
           case "hero+":
             return commands.hero(query);

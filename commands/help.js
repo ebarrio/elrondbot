@@ -7,7 +7,8 @@ module.exports = function help(channel) {
       "!hob+ <query> - Find and display card text from Hall of Beorn (including unofficial)\n" +
       "!hobimg <query> - Find and display card image from Hall of Beorn\n" +
       "!hobimg+ <query> - Find and display card image from Hall of Beorn (including unofficial)\n" +
-      "!quest - (temporarily disabled) Select a random quest\n" +
+      "!quest - Select a random quest\n" +
+      "!quest+ - Select a random quest (including unofficial)\n" +
       "!hero - Select a random hero\n" +
       "!hero+ - Select a random hero (including unofficial)\n" +
       "!card - Select a random player card\n" +
