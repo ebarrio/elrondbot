@@ -32,7 +32,8 @@ function getCardIndex() {
  * This function extracts the name, QC url and hall of beorn url.
  */
 async function getQCData() {
-  logger.info("Retrieving data from QC");
+    logger.info("Retrieving data from QC");
+    return []; //NOTE: This is temporary while QC is down
   try {
     return fetch(
       "http://lotr-lcg-quest-companion.gamersdungeon.net/api.php?format=json&parse=discord"
