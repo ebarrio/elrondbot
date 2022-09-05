@@ -21,7 +21,7 @@ function getQuestIndex() {
 }
 
 function getScenarioIndex() {
-    var json = requite('./data/Scenarios.json');
+    var json = require('./data/Scenarios.json');
     return json;
 }
 
