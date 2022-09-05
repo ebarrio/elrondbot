@@ -20,6 +20,11 @@ function getQuestIndex() {
     return json;
 }
 
+function getScenarioIndex() {
+    var json = requite('./data/Scenarios.json');
+    return json;
+}
+
 /**
  * QC format =
  * {
@@ -145,10 +150,10 @@ function parseQuestData(questData) {
 }
 
 // Initialize Discord Bot
-Promise.all([getCardIndex(), getQuestIndex()])
+Promise.all([getCardIndex(), getScenarioIndex()])
   .then(([cardList, questList]) => {
     //return [cardList, questList];
-    return [cardList, parseQuestData(questList)];
+    return [cardList, parseQCData(questList)];
   })
   .then(([cardList, { scenarios, ...rulesRef }]) => {
     const bot = new Discord.Client();
@@ -254,26 +259,26 @@ Promise.all([getCardIndex(), getQuestIndex()])
           case "card+":
             return commands.card(query);
           case "faq":
-              //return commands.rr({
-              //  ...query,
-              //  type: "faq",
-              //});
-              channel.send("this feature is disabled while the LotR Quest Companion is offline");
-              return null;
+              return commands.rr({
+                ...query,
+                type: "faq",
+              });
+              //channel.send("this feature is disabled while the LotR Quest Companion is offline");
+              //return null;
           case "glossary":
-              //return commands.rr({
-              //  ...query,
-              //  type: "glossary",
-              //});
-              channel.send("this feature is disabled while the LotR Quest Companion is offline");
-              return null;
+              return commands.rr({
+                ...query,
+                type: "glossary",
+              });
+              //channel.send("this feature is disabled while the LotR Quest Companion is offline");
+              //return null;
           case "errata":
-              //return commands.rr({
-              //  ...query,
-              //  type: "errata",
-              //});
-              channel.send("this feature is disabled while the LotR Quest Companion is offline");
-              return null;
+              return commands.rr({
+                ...query,
+                type: "errata",
+              });
+              //channel.send("this feature is disabled while the LotR Quest Companion is offline");
+              //return null;
           case "myrings":
             return commands.myrings();
           default:
