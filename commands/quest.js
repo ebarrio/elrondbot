@@ -9,5 +9,5 @@ module.exports = function quest(scenarios, author, channel, logger, filterUnoffi
       
   const quest = helpers.getRandomItem(quests);
 
-  channel.send(`<@${author.id}> ` + "Here's a quest for you: " + `**${quest.name}**\n${quest.product}\n\n${quest.url}`);
+  channel.send(`<@${author.id}> ` + "Here's a quest for you: " + `**${quest.name}**\n${quest.url}\n\n${quest.hoburl}`);
 }
