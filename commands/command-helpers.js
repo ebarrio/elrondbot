@@ -60,7 +60,7 @@ function createLinkMessage(emoji, link) {
 }
 
 function createShortLinkMessage(emoji, link) {
-    return template.linkShort(link, emoji);
+    return templates.linkShort(link, emoji);
 }
 
 function createShortCardMessage(emoji, card) {

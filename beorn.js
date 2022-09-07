@@ -155,12 +155,12 @@ function parseQuestData(questData) {
 }
 
 // Initialize Discord Bot
-Promise.all([getCardIndex(), getScenarioIndex(), getBlogIndex()])
-  .then(([cardList, questList, blogList]) => {
+Promise.all([getCardIndex(), getBlogIndex(), getScenarioIndex()])
+  .then(([cardList, blogList, questList]) => {
     //return [cardList, questList];
-    return [cardList, parseQCData(questList), blogList];
+    return [cardList, blogList, parseQCData(questList)];
   })
-  .then(([cardList, { scenarios, ...rulesRef }]) => {
+  .then(([cardList, blogList, { scenarios, ...rulesRef }]) => {
     const bot = new Discord.Client();
     const emojiNames = [
       "lore",

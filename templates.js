@@ -326,5 +326,7 @@ module.exports = {
   enemy,
   location,
   treachery,
-  encounter_side_quest
+  encounter_side_quest,
+  link,
+  linkShort
 };
