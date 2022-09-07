@@ -25,6 +25,11 @@ function getScenarioIndex() {
     return json;
 }
 
+function getBlogIndex() {
+    var json = require('./data/Blogs.json');
+    return json;
+}
+
 /**
  * QC format =
  * {
@@ -150,10 +155,10 @@ function parseQuestData(questData) {
 }
 
 // Initialize Discord Bot
-Promise.all([getCardIndex(), getScenarioIndex()])
-  .then(([cardList, questList]) => {
+Promise.all([getCardIndex(), getScenarioIndex(), getBlogIndex()])
+  .then(([cardList, questList, blogList]) => {
     //return [cardList, questList];
-    return [cardList, parseQCData(questList)];
+    return [cardList, parseQCData(questList), blogList];
   })
   .then(([cardList, { scenarios, ...rulesRef }]) => {
     const bot = new Discord.Client();
@@ -227,6 +232,7 @@ Promise.all([getCardIndex(), getScenarioIndex()])
         const commandConfig = {
           author,
           cardList,
+          blogList,
           scenarios,
           rulesRef,
           emojiSymbols,
@@ -257,7 +263,9 @@ Promise.all([getCardIndex(), getScenarioIndex()])
             return commands.hero(query);
           case "card":
           case "card+":
-            return commands.card(query);
+              return commands.card(query);
+          case "blog":
+              return commands.blog(query);
           case "faq":
               return commands.rr({
                 ...query,

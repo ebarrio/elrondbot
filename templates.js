@@ -293,6 +293,30 @@ function encounter_side_quest({
     return message;
 }
 
+function link({
+    title,
+    type,
+    url,
+    thumbnail_link,
+    labels,
+}, emoji) {
+    let message = `**${type}**\n${title}\n\n{url}\n`;
+
+    return message;
+}
+
+function linkShort({
+    title,
+    type,
+    url,
+    thumbnail_link,
+    labels,
+}, emoji) {
+    let message = `**${title}**\n${type}`;
+
+    return message;
+}
+
 module.exports = {
   card,
   cardShort,
