@@ -74,7 +74,6 @@ function fromUser(author) {
 module.exports = {
   getRandomItem,
   checkFilters,
-  checkListFilters,
   createCardMessage,
   createShortCardMessage,
   createLinkMessage,
