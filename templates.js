@@ -300,7 +300,7 @@ function link({
     thumbnail_link,
     labels,
 }, emoji) {
-    let message = `**${type}**\n${title}\n\n{url}\n`;
+    let message = `**${type}**\n${title}\n\nLink: ${url}\n`;
 
     return message;
 }
