@@ -77,5 +77,6 @@ module.exports = {
   createCardMessage,
   createShortCardMessage,
   createLinkMessage,
+  createShortLinkMessage,
   fromUser
 };
