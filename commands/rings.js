@@ -29,6 +29,10 @@ module.exports = function rings(
     .filter(c => setTypeFilter(c))
     .filter(c => helpers.checkFilters(c, filters));
 
+  if (matches.length > 20) {
+      matches = matches.splice(0, 20);
+  }
+
   logger.info(`found ${matches.length} cards, sending response`);
   if (matches.length === 1) {
     const message = matches.reduce((acc, card) => {

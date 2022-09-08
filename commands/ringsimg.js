@@ -27,6 +27,10 @@ module.exports = function ringsimg({ name, filters }, cardList, emojiSymbols, ch
       searchParams += `+${searchFilters}`;
     }
 
+    if (imgMatches.length > 20) {
+        imgMatches = imgMatches.splice(0, 20);
+    }
+
   logger.info(`found ${imgMatches.length} cards, sending response`);
   channel.send(`Cards found: ${imgMatches.length}\n\n`);
   if (imgMatches.length === 1) {

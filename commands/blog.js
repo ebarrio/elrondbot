@@ -31,6 +31,10 @@ let matches = blogList
   //.filter(c => setTypeFilter(c))
   //.filter(c => helpers.checkLinkFilters(c, filters));
 
+if (matches.length > 20) {
+    matches = matches.splice(0, 20);
+}
+
 logger.info(`found ${matches.length} blog links, sending response`);
 if (matches.length === 1) {
   const message = matches.reduce((acc, link) => {
@@ -40,9 +44,9 @@ if (matches.length === 1) {
 channel.send(message);
 } else if (matches.length > 1) {
     channel.send(`I found ${matches.length} blog links, reply with the number of the one you want:`);
-channel.send(matches.map((link, index) => {
+    channel.send(matches.map((link, index) => {
     const message = helpers.createShortLinkMessage(emojiSymbols, link);
-return `${index + 1}. ${message}`;
+    return `${index + 1}. ${message}`;
 }).join('\n'));
 channel.awaitMessages(helpers.fromUser(author), { max: 1, time: 60000, errors: ['time']})
 .then(collected => {
