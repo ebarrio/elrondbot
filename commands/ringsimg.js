@@ -12,7 +12,7 @@ module.exports = function ringsimg({ name, filters }, cardList, emojiSymbols, ch
     ? function(x) { return x.is_official; }
     : function(x) { return true; };
 
-  const imgMatches = cardList
+  let imgMatches = cardList
     .filter(c => c.name
       .toLowerCase()
       .normalize('NFD')
@@ -28,11 +28,15 @@ module.exports = function ringsimg({ name, filters }, cardList, emojiSymbols, ch
     }
 
     if (imgMatches.length > 20) {
+        let trueLength = imgMatches.length;
         imgMatches = imgMatches.splice(0, 20);
+        channel.send(`Cards found: ${trueLength} (returning 20)\n\n`);
+    } else {
+        channel.send(`Cards found: ${imgMatches.length}\n\n`);
     }
 
   logger.info(`found ${imgMatches.length} cards, sending response`);
-  channel.send(`Cards found: ${imgMatches.length}\n\n`);
+  
   if (imgMatches.length === 1) {
     const firstCard = imgMatches[0];
     channel.send({

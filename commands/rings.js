@@ -29,7 +29,9 @@ module.exports = function rings(
     .filter(c => setTypeFilter(c))
     .filter(c => helpers.checkFilters(c, filters));
 
+  let trueLength = 0;
   if (matches.length > 20) {
+      trueLength = matches.length;
       matches = matches.splice(0, 20);
   }
 
@@ -40,8 +42,12 @@ module.exports = function rings(
       return acc;
     }, "");
     channel.send(message);
-  } else if (matches.length > 1) {
-    channel.send(`I found ${matches.length} cards, reply with the number of the one you want:`);
+    } else if (matches.length > 1) {
+        if (trueLength > 0) {
+            channel.send(`I found ${trueLength} cards (max 20), reply with the number of the one you want:`);
+        } else {
+            channel.send(`I found ${matches.length} cards, reply with the number of the one you want:`);
+        }
     channel.send(matches.map((card, index) => {
       const message = helpers.createShortCardMessage(emojiSymbols, card);
       return `${index + 1}. ${message}`;

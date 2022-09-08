@@ -31,7 +31,9 @@ let matches = blogList
   //.filter(c => setTypeFilter(c))
   //.filter(c => helpers.checkLinkFilters(c, filters));
 
+let trueLength = 0;
 if (matches.length > 20) {
+    trueLength = matches.length;
     matches = matches.splice(0, 20);
 }
 
@@ -43,7 +45,11 @@ if (matches.length === 1) {
 }, "");
 channel.send(message);
 } else if (matches.length > 1) {
-    channel.send(`I found ${matches.length} blog links, reply with the number of the one you want:`);
+    if (trueLength > 0) {
+        channel.send(`I found ${trueLength} blog links (max 20), reply with the number of the one you want:`);
+    } else {
+        channel.send(`I found ${matches.length} blog links, reply with the number of the one you want:`);
+    }
     channel.send(matches.map((link, index) => {
     const message = helpers.createShortLinkMessage(emojiSymbols, link);
     return `${index + 1}. ${message}`;
