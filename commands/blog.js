@@ -26,7 +26,7 @@ let matches = blogList
     .replace(/[\u0300-\u036f]/g, "")
     .indexOf(name) > -1)
     || 
-    (l.labels.any(label.indexOf(name) > -1))
+    (l.labels && l.labels.some(lb => lb.indexOf(name) > -1))
   );
   //.filter(c => setTypeFilter(c))
   //.filter(c => helpers.checkLinkFilters(c, filters));
