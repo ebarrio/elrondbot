@@ -31,6 +31,11 @@ let matches = videoList
   //.filter(c => setTypeFilter(c))
   //.filter(c => helpers.checkLinkFilters(c, filters));
 
+if (!matches || matches.length == 0) {
+  channel.send(`no video links found matching ${name}\n`);
+  return;
+}
+
 let trueLength = 0;
 if (matches.length > 20) {
     trueLength = matches.length;
