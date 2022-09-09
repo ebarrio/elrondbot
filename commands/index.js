@@ -12,6 +12,8 @@ module.exports = function({
   author,
   cardList,
   blogList,
+  podcastList,
+  videoList,
   scenarios,
   rulesRef,
   emojiSymbols,
@@ -30,5 +32,7 @@ module.exports = function({
     rr: query => rr(query, rulesRef, emojiSymbols, channel, author, logger),
     myrings: () => myrings(author, channel, logger),
     blog: query => blog(query, blogList, emojiSymbols, channel, author, logger, filterUnofficial),
+    podcast: query => podcast(query, podcastList, emojiSymbols, channel, author, logger, filterUnofficial),
+    video: query => video(query, videoList, emojiSymbols, channel, author, logger, filterUnofficial),
   };
 };

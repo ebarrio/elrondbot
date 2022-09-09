@@ -1,8 +1,8 @@
 const helpers = require("./command-helpers");
 
-module.exports = function blog(
+module.exports = function podcast(
   { name, filters },
-    blogList,
+    podcastList,
     emojiSymbols,
     channel,
     author,
@@ -10,16 +10,16 @@ module.exports = function blog(
     filterUnofficial,
   ) {
     if (name === '') {
-        channel.send('Silly human, I need a query to find blog links');
+        channel.send('Silly human, I need a query to find podcast links');
         return;
     }
-    logger.info(`Searching for blog links labled with ${name}`);
+    logger.info(`Searching for podcast links labled with ${name}`);
 
 var setTypeFilter = (filterUnofficial)
   ? function(x) { return x.is_official; }
   : function(x) { return true; };
 
-let matches = blogList
+let matches = podcastList
   .filter(l => (l.title
     .toLowerCase()
     .normalize('NFD')
@@ -37,7 +37,7 @@ if (matches.length > 20) {
     matches = matches.splice(0, 20);
 }
 
-logger.info(`found ${matches.length} blog links, sending response`);
+logger.info(`found ${matches.length} podcast links, sending response`);
 if (matches.length === 1) {
   const message = matches.reduce((acc, link) => {
       acc += helpers.createLinkMessage(emojiSymbols, link);
@@ -46,9 +46,9 @@ if (matches.length === 1) {
 channel.send(message);
 } else if (matches.length > 1) {
     if (trueLength > 0) {
-        channel.send(`I found ${trueLength} blog links (max 20), reply with the number of the one you want:`);
+        channel.send(`I found ${trueLength} podcast links (max 20), reply with the number of the one you want:`);
     } else {
-        channel.send(`I found ${matches.length} blog links, reply with the number of the one you want:`);
+        channel.send(`I found ${matches.length} podcast links, reply with the number of the one you want:`);
     }
     channel.send(matches.map((link, index) => {
     const message = helpers.createShortLinkMessage(emojiSymbols, link);

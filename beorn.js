@@ -30,6 +30,16 @@ function getBlogIndex() {
     return json;
 }
 
+function getPodcastIndex() {
+    var json = require('./data/Podcasts.json');
+    return json;
+}
+
+function getVideoIndex() {
+    var json = require('./data/Videos.json');
+    return json;
+}
+
 /**
  * QC format =
  * {
@@ -155,12 +165,11 @@ function parseQuestData(questData) {
 }
 
 // Initialize Discord Bot
-Promise.all([getCardIndex(), getBlogIndex(), getScenarioIndex()])
-  .then(([cardList, blogList, questList]) => {
-    //return [cardList, questList];
-    return [cardList, blogList, parseQCData(questList)];
+Promise.all([getCardIndex(), getBlogIndex(), getPodcastIndex(), getVideoIndex(), getScenarioIndex()])
+  .then(([cardList, blogList, podcastList, videoList, questList]) => {
+      return [cardList, blogList, podcastList, videoList, parseQCData(questList)];
   })
-  .then(([cardList, blogList, { scenarios, ...rulesRef }]) => {
+  .then(([cardList, blogList, podcastList, videoList, { scenarios, ...rulesRef }]) => {
     const bot = new Discord.Client();
     const emojiNames = [
       "lore",
@@ -233,6 +242,8 @@ Promise.all([getCardIndex(), getBlogIndex(), getScenarioIndex()])
           author,
           cardList,
           blogList,
+          podcastList,
+          videoList,
           scenarios,
           rulesRef,
           emojiSymbols,
@@ -266,6 +277,10 @@ Promise.all([getCardIndex(), getBlogIndex(), getScenarioIndex()])
               return commands.card(query);
           case "blog":
               return commands.blog(query);
+          case "podcast":
+              return commands.podcast(query);
+          case "video":
+              return commands.video(query);
           case "faq":
               return commands.rr({
                 ...query,
