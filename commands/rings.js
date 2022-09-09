@@ -29,6 +29,11 @@ module.exports = function rings(
     .filter(c => setTypeFilter(c))
     .filter(c => helpers.checkFilters(c, filters));
 
+  if (!matches || matches.length == 0) {
+      channel.send(`no cards found matching ${name}\n`);
+      return;
+  }
+
   let trueLength = 0;
   if (matches.length > 20) {
       trueLength = matches.length;

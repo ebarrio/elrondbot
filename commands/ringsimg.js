@@ -27,6 +27,11 @@ module.exports = function ringsimg({ name, filters }, cardList, emojiSymbols, ch
       searchParams += `+${searchFilters}`;
     }
 
+    if (!imgMatches || imgMatches.length == 0) {
+        channel.send(`no card images found matching ${name}\n`);
+    return;
+    }
+
     if (imgMatches.length > 20) {
         let trueLength = imgMatches.length;
         imgMatches = imgMatches.splice(0, 20);
