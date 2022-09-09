@@ -7,6 +7,8 @@ const card = require("./card");
 const rr = require("./rulesRef");
 const myrings = require("./myrings");
 const blog = require("./blog");
+const podcast = require("./podcast");
+const video = require("./video");
 
 module.exports = function({
   author,
