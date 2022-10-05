@@ -21,7 +21,7 @@ module.exports = function cardOfTheDay(cardList, emoji, logger, bot) {
         channel.send({
           files : [`${card.imagesrc}`]
         });
-        let message = channel.send(helpers.createCardMessage(emoji, card));
+        let message = await channel.send(helpers.createCardMessage(emoji, card));
         try {
             message.react(emoji['one'])
               .then(() => message.react(emoji['two']))
