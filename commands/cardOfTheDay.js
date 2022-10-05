@@ -21,13 +21,13 @@ module.exports = function cardOfTheDay(cardList, emoji, logger, bot) {
         channel.send({
           files : [`${card.imagesrc}`]
         });
-        let message = await channel.send(helpers.createCardMessage(emoji, card));
         try {
-            message.react(emoji['one'])
-              .then(() => message.react(emoji['two']))
-              .then(() => message.react(emoji['three']))
-              .then(() => message.react(emoji['four']))
-              .then(() => message.react(emoji['five']));
+            channel.send(helpers.createCardMessage(emoji, card))
+              .then(m => m.react(emoji['one'])
+              .then(m => m.react(emoji['two']))
+              .then(m => m.react(emoji['three']))
+              .then(m => m.react(emoji['four']))
+              .then(m => m.react(emoji['five']));
         } catch (err) {
             console.log(err);
             console.log(`message is ${message}`);
