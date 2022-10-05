@@ -17,20 +17,23 @@ module.exports = function cardOfTheDay(cardList, emoji, logger, bot) {
   bot.channels.fetch(channelId)
     .then(channel => {
       if (channel) {
-        channel.send(`**Card of the Day**\n`);
+        
         channel.send({
           files : [`${card.imagesrc}`]
         });
         try {
-            channel.send(helpers.createCardMessage(emoji, card))
-              .then(m => m.react('\u0031\ufe0f\u20e3'))
-              .then(m => m.react('\u0032\ufe0f\u20e3'))
-              .then(m => m.react('\u0033\ufe0f\u20e3'))
-              .then(m => m.react('\u0034\ufe0f\u20e3'))
-              .then(m => m.react('\u0035\ufe0f\u20e3'));
+            channel.send(`**Card of the Day**\n`)
+              .then(() => channel.send({ files : [`${card.imagesrc}`] }))
+              .then(() => channel.send(helpers.createCardMessage(emoji, card))
+                .then(m => m.react('\u0031\ufe0f\u20e3'))
+                .then(m => m.react('\u0032\ufe0f\u20e3'))
+                .then(m => m.react('\u0033\ufe0f\u20e3'))
+                .then(m => m.react('\u0034\ufe0f\u20e3'))
+                .then(m => m.react('\u0035\ufe0f\u20e3'))
+                .catch(e => console.error('one of the emojis failed to react', e))
+              );
         } catch (err) {
             console.log(err);
-            console.log(`message is ${message}`);
             logger.error(err);
         }
       } else {
