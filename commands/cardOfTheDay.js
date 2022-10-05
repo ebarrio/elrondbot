@@ -28,7 +28,7 @@ module.exports = function cardOfTheDay(cardList, emoji, logger, bot) {
                     .then(m => m.react('\u0034\ufe0f\u20e3'))
                     .then(m => m.react('\u0035\ufe0f\u20e3'))
                     .catch(e => console.error('one of the emojis failed to react', e))
-                )
+                })
               );
         } catch (err) {
             console.log(err);
