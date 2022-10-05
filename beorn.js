@@ -281,7 +281,7 @@ Promise.all([getCardIndex(), getBlogIndex(), getPodcastIndex(), getVideoIndex(),
           case "card+":
               return commands.card(query);
           case "day":
-              return commands.cardOfTheDay(query);
+              return cardOfTheDay(query);
           case "blog":
               return commands.blog(query);
           case "podcast":
