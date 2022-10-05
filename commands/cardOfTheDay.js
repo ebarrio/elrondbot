@@ -21,13 +21,16 @@ module.exports = function cardOfTheDay(cardList, emoji, logger, bot) {
         channel.send({
           files : [`${card.imagesrc}`]
         });
-        let message = helpers.createCardMessage(emoji, card);
-        channel.send(message);
-        message.react(emoji['one'])
-          .then(() => message.react(emoji['two']))
-          .then(() => message.react(emoji['three']))
-          .then(() => message.react(emoji['four']))
-          .then(() => message.react(emoji['five']));
+        let message = channel.send(helpers.createCardMessage(emoji, card));
+        try {
+            message.react(emoji['one'])
+              .then(() => message.react(emoji['two']))
+              .then(() => message.react(emoji['three']))
+              .then(() => message.react(emoji['four']))
+              .then(() => message.react(emoji['five']));
+        } catch (err) {
+          logger.error(err);
+        }
       } else {
         let e = 'Could not find #card-of-the-day channel';
         logger.error(e);
