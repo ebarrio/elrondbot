@@ -29,7 +29,9 @@ module.exports = function cardOfTheDay(cardList, emoji, logger, bot) {
               .then(() => message.react(emoji['four']))
               .then(() => message.react(emoji['five']));
         } catch (err) {
-          logger.error(err);
+            console.log(err);
+            console.log(`message is ${message}`);
+            logger.error(err);
         }
       } else {
         let e = 'Could not find #card-of-the-day channel';
