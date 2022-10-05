@@ -189,11 +189,6 @@ Promise.all([getCardIndex(), getBlogIndex(), getPodcastIndex(), getVideoIndex(),
       "willpowerblack",
       "threatblack",
       "hitpointsblack",
-      "one",
-      "two",
-      "three",
-      "four",
-      "five",
     ];
     let emojiSymbols;
 
