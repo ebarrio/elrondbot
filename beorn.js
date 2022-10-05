@@ -189,6 +189,11 @@ Promise.all([getCardIndex(), getBlogIndex(), getPodcastIndex(), getVideoIndex(),
       "willpowerblack",
       "threatblack",
       "hitpointsblack",
+      "one",
+      "two",
+      "three",
+      "four",
+      "five",
     ];
     let emojiSymbols;
 
@@ -275,6 +280,8 @@ Promise.all([getCardIndex(), getBlogIndex(), getPodcastIndex(), getVideoIndex(),
           case "card":
           case "card+":
               return commands.card(query);
+          case "day":
+              return cardOfTheDay(cardList, emojiSymbols, logger, bot);
           case "blog":
               return commands.blog(query);
           case "podcast":
