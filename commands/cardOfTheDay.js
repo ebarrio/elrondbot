@@ -23,11 +23,11 @@ module.exports = function cardOfTheDay(cardList, emoji, logger, bot) {
         });
         try {
             channel.send(helpers.createCardMessage(emoji, card))
-              .then(m => m.react(':one:'))
-              .then(m => m.react(':two:'))
-              .then(m => m.react(':three:'))
-              .then(m => m.react(':four:'))
-              .then(m => m.react(':five:'));
+              .then(m => m.react('\N{ONE}'))
+              .then(m => m.react('\N{TWO}'))
+              .then(m => m.react('\N{THREE}'))
+              .then(m => m.react('\N{FOUR}'))
+              .then(m => m.react('\N{FIVE}'));
         } catch (err) {
             console.log(err);
             console.log(`message is ${message}`);
