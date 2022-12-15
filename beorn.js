@@ -15,6 +15,31 @@ function getCardIndex() {
   return json;
 }
 
+function getQuestIndex() {
+    var json = require('./data/Quests.json');
+    return json;
+}
+
+function getScenarioIndex() {
+    var json = require('./data/Scenarios.json');
+    return json;
+}
+
+function getBlogIndex() {
+    var json = require('./data/Blogs.json');
+    return json;
+}
+
+function getPodcastIndex() {
+    var json = require('./data/Podcasts.json');
+    return json;
+}
+
+function getVideoIndex() {
+    var json = require('./data/Videos.json');
+    return json;
+}
+
 /**
  * QC format =
  * {
@@ -31,17 +56,19 @@ function getCardIndex() {
  *
  * This function extracts the name, QC url and hall of beorn url.
  */
+/*
 async function getQCData() {
-  logger.info("Retrieving data from QC");
+    logger.info("Retrieving data from QC");
+    return []; //NOTE: This is temporary while QC is down
   try {
     return fetch(
       "http://lotr-lcg-quest-companion.gamersdungeon.net/api.php?format=json&parse=discord"
     ).then((res) => res.json());
   } catch (err) {
     logger.error(err);
-    return Promise.reject(err);
+    return [];
   }
-}
+}*/
 
 function getNameAndFilters(args) {
   return args.reduce(
@@ -128,12 +155,21 @@ function parseQCData(qcData) {
   };
 }
 
+function parseQuestData(questData) {
+    return {
+        scenarios: questData,
+        faq: {},
+        glossary: {},
+        erratas: {},
+    };
+}
+
 // Initialize Discord Bot
-Promise.all([getCardIndex(), getQCData()])
-  .then(([cardList, qcData]) => {
-    return [cardList, parseQCData(qcData)];
+Promise.all([getCardIndex(), getBlogIndex(), getPodcastIndex(), getVideoIndex(), getScenarioIndex()])
+  .then(([cardList, blogList, podcastList, videoList, questList]) => {
+      return [cardList, blogList, podcastList, videoList, parseQCData(questList)];
   })
-  .then(([cardList, { scenarios, ...rulesRef }]) => {
+  .then(([cardList, blogList, podcastList, videoList, { scenarios, ...rulesRef }]) => {
     const bot = new Discord.Client();
     const emojiNames = [
       "lore",
@@ -142,6 +178,7 @@ Promise.all([getCardIndex(), getQCData()])
       "tactics",
       "neutral",
       "fellowship",
+      "baggins",
       "attack",
       "defense",
       "willpower",
@@ -204,6 +241,9 @@ Promise.all([getCardIndex(), getQCData()])
         const commandConfig = {
           author,
           cardList,
+          blogList,
+          podcastList,
+          videoList,
           scenarios,
           rulesRef,
           emojiSymbols,
@@ -225,28 +265,45 @@ Promise.all([getCardIndex(), getQCData()])
           case "hobimg+":
             return commands.ringsimg(query);
           case "quest":
-            return commands.quest();
+          case "quest+":
+              return commands.quest();
+              //channel.send("this feature is disabled while the LotR Quest Companion is offline");
+              //return null;
           case "hero":
           case "hero+":
             return commands.hero(query);
           case "card":
           case "card+":
-            return commands.card(query);
+              return commands.card(query);
+          case "day":
+              return cardOfTheDay(cardList, emojiSymbols, logger, bot);
+          case "blog":
+              return commands.blog(query);
+          case "podcast":
+              return commands.podcast(query);
+          case "video":
+              return commands.video(query);
           case "faq":
-            return commands.rr({
-              ...query,
-              type: "faq",
-            });
+              return commands.rr({
+                ...query,
+                type: "faq",
+              });
+              //channel.send("this feature is disabled while the LotR Quest Companion is offline");
+              //return null;
           case "glossary":
-            return commands.rr({
-              ...query,
-              type: "glossary",
-            });
+              return commands.rr({
+                ...query,
+                type: "glossary",
+              });
+              //channel.send("this feature is disabled while the LotR Quest Companion is offline");
+              //return null;
           case "errata":
-            return commands.rr({
-              ...query,
-              type: "errata",
-            });
+              return commands.rr({
+                ...query,
+                type: "errata",
+              });
+              //channel.send("this feature is disabled while the LotR Quest Companion is offline");
+              //return null;
           case "myrings":
             return commands.myrings();
           default:

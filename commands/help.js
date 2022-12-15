@@ -1,6 +1,6 @@
 module.exports = function help(channel) {
   channel.send(
-    "**BeornBot** - Lord of the Rings: The Card Game - Bear Bot 3.4.3 (2022-12-15)\n\n" +
+    "**BeornBot** - Lord of the Rings: The Card Game - Bear Bot 3.8.8 (2022-12-15)\n\n" +
       "List of Commands:\n" +
       "!help - This help message\n" +
       "!hob <query> - Find and display card text from Hall of Beorn\n" +
@@ -12,6 +12,9 @@ module.exports = function help(channel) {
       "!hero+ - Select a random hero (including unofficial)\n" +
       "!card - Select a random player card\n" +
       "!card+ - Select a random player card (including unofficial)\n" +
+      "!blog <query> - Find community blog links related to the query\n" +
+      "!podcast <query> - Find community podcast links related to the query\n" +
+      "!video <query> - Find community video links related to the query\n" +
       "!faq <text> - Finds questions in FAQ containing <text>\n" +
       "!glossary <text> - Finds questions in Glossary containing <text>\n" +
       "!errata <cardname> - Finds errata for card with name <cardname>\n" +

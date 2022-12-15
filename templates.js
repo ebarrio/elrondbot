@@ -5,7 +5,7 @@ function parseText(text, emoji) {
     .replace(/<\/.*>/g, "");
 
   Object.keys(emoji).forEach(emoName => {
-    parsedText = parsedText.replace(`[${emoName}]`, emoji[emoName]);
+    parsedText = parsedText.replaceAll(`[${emoName}]`, emoji[emoName]);
   });
 
   return parsedText;
@@ -17,7 +17,7 @@ function getVersionText(versions) {
     message += `*Versions:*\n`;
     for (var i=0;i<versions.length;i++) {
       let ver = versions[i];
-      message += `  ${ver.set_name} (${ver.year})\n`;   
+      message += `  ${ver.set_name} (${ver.year}) ${ver.url}\n`;   
     }
     message += `\n\n`;
   }
@@ -32,6 +32,7 @@ function cardShort({
   sphere_name,
   type_name,
   versions,
+  url,
 }, emoji) {
     let versionText = '';
     if (versions && versions.length > 1) {
@@ -56,6 +57,7 @@ function card({
   pack_name,
   position,
   versions,
+  url,
 }, emoji) {
   let message = `${emoji[sphere_code] || ''} **${name}**\n*${sphere_name} ${type_name}* - Cost: **${cost}**\n`;
   if (traits) {
@@ -65,13 +67,15 @@ function card({
   if (flavor) {
     message += `*${flavor.replace(/<cite>/g, " - ").replace(/<\/cite>/, "")}*\n`;
   }
-  message += `\n*${pack_name}* - **#${position}**\n`;
+  message += `\n*${pack_name}* - **#${position}**\n\n`;
 
   let versionText = getVersionText(versions);
   if (versionText) {
     message += versionText;
+  } else {
+    message += `${url}\n`;
   }
-
+  
   return message;
 }
 
@@ -91,6 +95,7 @@ function hero({
   pack_name,
   position,
   versions,
+  url,
 }, emoji) {
   let message = `${emoji[sphere_code] || ''} **${name}**\n*${sphere_name} ${type_name}* - Starting Threat: **${threat}**\n${emoji["willpower"]} ${willpower} ${emoji['attack']} ${attack} ${emoji['defense']} ${defense} ${emoji['hitpoints']} ${health}\n`;
   if (traits) {
@@ -105,6 +110,8 @@ function hero({
   let versionText = getVersionText(versions);
   if (versionText) {
     message += versionText;
+  } else {
+    message += `${url}\n`;
   }
 
   return message;
@@ -126,6 +133,7 @@ function ally({
   pack_name,
   position,
   versions,
+  url,
 }, emoji) {
     let message = `${emoji[sphere_code] || ''} **${name}**\n*${sphere_name} ${type_name}* - Cost: **${cost}**\n${emoji["willpower"]} ${willpower} ${emoji['attack']} ${attack} ${emoji['defense']} ${defense} ${emoji['hitpoints']} ${health}\n`;
     if (traits) {
@@ -139,7 +147,9 @@ function ally({
 
     let versionText = getVersionText(versions);
     if (versionText) {
-        message += versionText;
+      message += versionText;
+    } else {
+      message += `${url}\n`;
     }
 
     return message;
@@ -157,6 +167,7 @@ function player_side_quest({
   pack_name,
   position,
   versions,
+  url,
 }, emoji) {
     let message = `${emoji[sphere_code] || ''} **${name}**\n*${sphere_name} ${type_name}* - ${emoji['hitpoints']} ${quest_points}\n`;
     if (traits) {
@@ -170,7 +181,9 @@ function player_side_quest({
 
     let versionText = getVersionText(versions);
     if (versionText) {
-        message += versionText;
+      message += versionText;
+    } else {
+      message += `${url}\n`;
     }
 
     return message;
@@ -190,6 +203,7 @@ function enemy({
   flavor,
   pack_name,
   position,
+  url,
 }, emoji) {
     let message = `**${name}** - Encounter Set: ${encounter_set} Engagement Cost: **${engagement_cost}**\n${emoji["threat"]} ${threat_strength} ${emoji['attack']} ${attack} ${emoji['defense']} ${defense} ${emoji['hitpoints']} ${health}\n`;
     if (traits) {
@@ -199,7 +213,7 @@ function enemy({
     if (flavor) {
         message += `*${flavor.replace(/<cite>/g, " - ").replace(/<\/cite>/, "")}*\n`;
     }
-    message += `\n*${pack_name}* - **#${position}**\n\n`;
+    message += `\n*${pack_name}* - **#${position}**\n${url}\n`;
 
     return message;
 }
@@ -215,6 +229,7 @@ function location({
   flavor,
   pack_name,
   position,
+  url,
 }, emoji) {
     let message = `**${name}** - Encounter Set: ${encounter_set}\n${emoji["threat"]} ${threat_strength} ${emoji['hitpoints']} ${quest_points}\n`;
     if (traits) {
@@ -224,7 +239,7 @@ function location({
     if (flavor) {
         message += `*${flavor.replace(/<cite>/g, " - ").replace(/<\/cite>/, "")}*\n`;
     }
-    message += `\n*${pack_name}* - **#${position}**\n\n`;
+    message += `\n*${pack_name}* - **#${position}**\n${url}\n`;
 
     return message;
 }
@@ -238,6 +253,7 @@ function treachery({
   flavor,
   pack_name,
   position,
+  url,
 }, emoji) {
     let message = `**${name}** - Encounter Set: ${encounter_set}\n`;
     if (traits) {
@@ -247,7 +263,7 @@ function treachery({
     if (flavor) {
         message += `*${flavor.replace(/<cite>/g, " - ").replace(/<\/cite>/, "")}*\n`;
     }
-    message += `\n*${pack_name}* - **#${position}**\n\n`;
+    message += `\n*${pack_name}* - **#${position}**\n${url}\n`;
 
     return message;
 }
@@ -262,6 +278,7 @@ function encounter_side_quest({
   flavor,
   pack_name,
   position,
+  url,
 }, emoji) {
     let message = `**${name}** - Encounter Set: ${encounter_set}\n${emoji['hitpoints']} ${quest_points}\n`;
     if (traits) {
@@ -271,7 +288,31 @@ function encounter_side_quest({
     if (flavor) {
         message += `*${flavor.replace(/<cite>/g, " - ").replace(/<\/cite>/, "")}*\n`;
     }
-    message += `\n*${pack_name}* - **#${position}**\n\n`;
+    message += `\n*${pack_name}* - **#${position}**\n${url}\n`;
+
+    return message;
+}
+
+function link({
+    title,
+    type,
+    url,
+    thumbnail_link,
+    labels,
+}, emoji) {
+    let message = `**${type}**\n${title}\n\nLink: ${url}\n`;
+
+    return message;
+}
+
+function linkShort({
+    title,
+    type,
+    url,
+    thumbnail_link,
+    labels,
+}, emoji) {
+    let message = `**${title}**\n${type}`;
 
     return message;
 }
@@ -285,5 +326,7 @@ module.exports = {
   enemy,
   location,
   treachery,
-  encounter_side_quest
+  encounter_side_quest,
+  link,
+  linkShort
 };

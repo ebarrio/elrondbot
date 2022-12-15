@@ -55,6 +55,14 @@ function createCardMessage(emoji, card) {
   }
 }
 
+function createLinkMessage(emoji, link) {
+    return templates.link(link, emoji);
+}
+
+function createShortLinkMessage(emoji, link) {
+    return templates.linkShort(link, emoji);
+}
+
 function createShortCardMessage(emoji, card) {
   return templates.cardShort(card, emoji);    
 }
@@ -68,5 +76,7 @@ module.exports = {
   checkFilters,
   createCardMessage,
   createShortCardMessage,
+  createLinkMessage,
+  createShortLinkMessage,
   fromUser
 };
