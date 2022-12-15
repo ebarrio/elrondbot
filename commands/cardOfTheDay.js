@@ -3,12 +3,13 @@ const helpers = require("./command-helpers");
 module.exports = function cardOfTheDay(cardList, emoji, logger, bot) {
 
   const cards = cardList
-    .filter(c => c.type_code == "hero" 
+    .filter(c => c.is_official &&
+      (c.type_code == "hero" 
       || c.type_code == "ally" 
       || c.type_code == "attachment"
       || c.type_code == "event"
       || c.type_code == "player-side-quest"
-      || c.type_code == "contract");
+      || c.type_code == "contract"));
 
   const card = helpers.getRandomItem(cards);
 
