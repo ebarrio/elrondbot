@@ -3,7 +3,10 @@ const helpers = require("./command-helpers");
 module.exports = function cardOfTheDay(cardList, emoji, logger, bot) {
 
   const cards = cardList
-    .filter(c => c.is_official &&
+    .filter(c => c.is_official && 
+      c.subtype_code != 'boon' &&
+      c.sphere_code != 'baggins' &&
+      c.sphere_code != 'fellowship' &&
       (c.type_code == "hero" 
       || c.type_code == "ally" 
       || c.type_code == "attachment"
