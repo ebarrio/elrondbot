@@ -2,8 +2,11 @@ const helpers = require("./command-helpers");
 
 module.exports = function cardOfTheDay(cardList, emoji, logger, bot) {
 
+  //Exclude First Age and Legacy of Numenor sets from Card of the Day
+  const excludePacks = ['FA', 'TUtM', 'AtO', 'TBoM', 'TFoN', 'LoF', 'BTF'];
+
   const cards = cardList
-    .filter(c => c.is_official && 
+    .filter(c => excludePacks.indexOf(c.pack_code) == -1 &&
       c.subtype_code != 'boon' &&
       c.sphere_code != 'baggins' &&
       c.sphere_code != 'fellowship' &&
