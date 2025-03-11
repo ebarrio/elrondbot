@@ -5,7 +5,7 @@
   "main": "beorn.js",
   "scripts": {
     "dev": "nodemon beorn.js",
-    "start": "node index.js"
+    "start": "node beorn.js"
   },
   "repository": {
     "type": "git",
