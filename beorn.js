@@ -192,7 +192,8 @@ Promise.all([getCardIndex(), getBlogIndex(), getPodcastIndex(), getVideoIndex(),
     ];
     let emojiSymbols;
 
-    const DAY_MILLIS = 86400000;
+    // const DAY_MILLIS = 86400000;
+    const DAY_MILLIS = 60000;
 
     function millisUntilCutoff() {
       let now = new Date();
