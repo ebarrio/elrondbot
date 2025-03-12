@@ -19,7 +19,7 @@ module.exports = function cardOfTheDay(cardList, emoji, logger, bot) {
 
   const card = helpers.getRandomItem(cards);
 
-  const channelId = '994005297150570557';
+  const channelId = '1348963907464855644';
 
   bot.channels.fetch(channelId)
     .then(channel => {
