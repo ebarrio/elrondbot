@@ -337,4 +337,4 @@ process.on("uncaughtException", (err) => {
 const express = require('express');
 const app = express();
 app.get('/', (req, res) => res.send('Bot activo'));
-app.listen(3000, () => console.log('Servidor corriendo'));
+app.listen(process.env.PORT || 3000, () => console.log(`Servidor corriendo en el puerto ${process.env.PORT || 3000}`));
